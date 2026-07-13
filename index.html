@@ -46,6 +46,15 @@
       height: auto;
     }
 
+    /* Hide scrollbars globally while preserving scroll */
+    * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    *::-webkit-scrollbar {
+      display: none;
+    }
+
     .lenis.lenis-smooth {
       scroll-behavior: auto !important;
     }
@@ -1522,30 +1531,30 @@
 
         <!-- Column 2: Explore Links -->
         <div class="hidden md:flex flex-col lg:col-span-3 h-full justify-start">
-          <div class="flex flex-col w-full border-t border-gray-200 mt-2 md:mt-0">
+          <div class="flex flex-col w-full mt-2 md:mt-0">
             <!-- Explore Links -->
             <a href="#" class="group relative py-3 border-b border-gray-200 flex items-center justify-between overflow-hidden">
-              <div class="absolute inset-0 bg-[#3f1b63] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+              <div class="absolute inset-0 bg-[#3f1b63] translate-x-[-102%] group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
               <span class="relative z-10 font-bold text-[15px] uppercase tracking-widest text-[#13172b] group-hover:text-white transition-colors duration-500 group-hover:pl-4">About</span>
               <i class="ri-arrow-right-line relative z-10 text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pr-4 transition-all duration-500"></i>
             </a>
             <a href="#" class="group relative py-3 border-b border-gray-200 flex items-center justify-between overflow-hidden">
-              <div class="absolute inset-0 bg-[#3f1b63] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+              <div class="absolute inset-0 bg-[#3f1b63] translate-x-[-102%] group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
               <span class="relative z-10 font-bold text-[15px] uppercase tracking-widest text-[#13172b] group-hover:text-white transition-colors duration-500 group-hover:pl-4">Clubs</span>
               <i class="ri-arrow-right-line relative z-10 text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pr-4 transition-all duration-500"></i>
             </a>
             <a href="#" class="group relative py-3 border-b border-gray-200 flex items-center justify-between overflow-hidden">
-              <div class="absolute inset-0 bg-[#3f1b63] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+              <div class="absolute inset-0 bg-[#3f1b63] translate-x-[-102%] group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
               <span class="relative z-10 font-bold text-[15px] uppercase tracking-widest text-[#13172b] group-hover:text-white transition-colors duration-500 group-hover:pl-4">Events</span>
               <i class="ri-arrow-right-line relative z-10 text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pr-4 transition-all duration-500"></i>
             </a>
             <a href="#" class="group relative py-3 border-b border-gray-200 flex items-center justify-between overflow-hidden">
-              <div class="absolute inset-0 bg-[#3f1b63] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+              <div class="absolute inset-0 bg-[#3f1b63] translate-x-[-102%] group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
               <span class="relative z-10 font-bold text-[15px] uppercase tracking-widest text-[#13172b] group-hover:text-white transition-colors duration-500 group-hover:pl-4">Gallery</span>
               <i class="ri-arrow-right-line relative z-10 text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pr-4 transition-all duration-500"></i>
             </a>
             <a href="#" class="group relative py-3 border-b border-gray-200 flex items-center justify-between overflow-hidden">
-              <div class="absolute inset-0 bg-[#3f1b63] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+              <div class="absolute inset-0 bg-[#3f1b63] translate-x-[-102%] group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
               <span class="relative z-10 font-bold text-[15px] uppercase tracking-widest text-[#13172b] group-hover:text-white transition-colors duration-500 group-hover:pl-4">Team</span>
               <i class="ri-arrow-right-line relative z-10 text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pr-4 transition-all duration-500"></i>
             </a>
@@ -1574,7 +1583,7 @@
               transform: rotateX(90deg);
             }
           </style>
-          <div class="flex flex-col w-full border-t border-gray-200 mt-2">
+          <div class="flex flex-col w-full mt-2">
             <!-- Social Links -->
             <a id="footer-instagram" href="#" target="_blank" class="cube-link group relative py-3 border-b border-gray-200 flex items-center justify-between perspective-cube">
               <div class="absolute -inset-x-4 inset-y-0 overflow-hidden rounded-xl">
@@ -1641,6 +1650,23 @@
               </div>
               <div class="relative z-10 text-gray-400 group-hover:text-white transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-12">
                 <i class="ri-youtube-fill text-xl"></i>
+              </div>
+            </a>
+
+            <a id="footer-twitter" href="#" target="_blank" class="cube-link group relative py-3 border-b border-gray-200 flex items-center justify-between perspective-cube">
+              <div class="absolute -inset-x-4 inset-y-0 overflow-hidden rounded-xl">
+                <div class="absolute inset-0 bg-[#000000] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-0"></div>
+              </div>
+              <div class="relative z-10 w-full h-8 cube-inner">
+                <div class="absolute inset-0 flex items-center cube-front">
+                  <span class="font-bold text-[15px] uppercase tracking-widest text-[#13172b]">X (Twitter)</span>
+                </div>
+                <div class="absolute inset-0 flex items-center cube-bottom">
+                  <span class="font-bold text-[15px] uppercase tracking-widest text-white">Follow Us</span>
+                </div>
+              </div>
+              <div class="relative z-10 text-gray-400 group-hover:text-white transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-12">
+                <i class="ri-twitter-x-fill text-xl"></i>
               </div>
             </a>
           </div>
@@ -2690,12 +2716,67 @@
             const footerFB = document.getElementById('footer-facebook');
             const footerLinkedIn = document.getElementById('footer-linkedin');
             const footerYT = document.getElementById('footer-youtube');
+            const footerTwitter = document.getElementById('footer-twitter');
 
-            if (footerEmail && settingsData.contact_email) footerEmail.href = `mailto:${settingsData.contact_email}`;
-            if (footerInsta && settingsData.instagram_url) footerInsta.href = settingsData.instagram_url;
-            if (footerFB && settingsData.facebook_url) footerFB.href = settingsData.facebook_url;
-            if (footerLinkedIn && settingsData.linkedin_url) footerLinkedIn.href = settingsData.linkedin_url;
-            if (footerYT && settingsData.youtube_url) footerYT.href = settingsData.youtube_url;
+            // Email
+            if (footerEmail) {
+              if (settingsData.contact_email) {
+                footerEmail.href = `mailto:${settingsData.contact_email}`;
+                footerEmail.style.display = ''; // visible
+              } else {
+                footerEmail.style.display = 'none'; // hidden
+              }
+            }
+
+            // Instagram
+            if (footerInsta) {
+              if (settingsData.instagram_url) {
+                footerInsta.href = settingsData.instagram_url;
+                footerInsta.classList.remove('hidden');
+              } else {
+                footerInsta.classList.add('hidden');
+              }
+            }
+
+            // Facebook
+            if (footerFB) {
+              if (settingsData.facebook_url) {
+                footerFB.href = settingsData.facebook_url;
+                footerFB.classList.remove('hidden');
+              } else {
+                footerFB.classList.add('hidden');
+              }
+            }
+
+            // LinkedIn
+            if (footerLinkedIn) {
+              if (settingsData.linkedin_url) {
+                footerLinkedIn.href = settingsData.linkedin_url;
+                footerLinkedIn.classList.remove('hidden');
+              } else {
+                footerLinkedIn.classList.add('hidden');
+              }
+            }
+
+            // YouTube
+            if (footerYT) {
+              if (settingsData.youtube_url) {
+                footerYT.href = settingsData.youtube_url;
+                footerYT.classList.remove('hidden');
+              } else {
+                footerYT.classList.add('hidden');
+              }
+            }
+
+            // X (Twitter)
+            if (footerTwitter) {
+              if (settingsData.twitter_url) {
+                footerTwitter.href = settingsData.twitter_url;
+                footerTwitter.classList.remove('hidden');
+              } else {
+                footerTwitter.classList.add('hidden');
+              }
+            }
           }
         } catch (e) {
           console.error('Footer settings fetch failed:', e);

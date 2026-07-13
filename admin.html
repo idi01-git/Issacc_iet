@@ -70,6 +70,15 @@
     .cropper-circle .cropper-face {
       border-radius: 50%;
     }
+
+    /* Hide scrollbars globally while preserving scroll */
+    * {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE / Edge */
+    }
+    *::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
   </style>
 </head>
 
@@ -203,10 +212,10 @@
                     <div id="about-img-before-zone" class="border border-white/10 hover:border-brand-pink/50 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer transition-colors relative min-h-[120px]">
                       <i class="ri-image-add-line text-2xl text-gray-500 mb-1"></i>
                       <span class="text-xs text-gray-400">Change image</span>
-                      <input type="file" id="about-img-before" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
-                      <div id="about-img-before-preview" class="absolute inset-0 rounded-xl overflow-hidden bg-brand-card hidden">
+                      <div id="about-img-before-preview" class="absolute inset-0 rounded-xl overflow-hidden bg-brand-card hidden pointer-events-none">
                         <img src="" class="w-full h-full object-cover">
                       </div>
+                      <input type="file" id="about-img-before" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10">
                     </div>
                   </div>
                   <div>
@@ -214,10 +223,10 @@
                     <div id="about-img-after-zone" class="border border-white/10 hover:border-brand-pink/50 rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer transition-colors relative min-h-[120px]">
                       <i class="ri-image-add-line text-2xl text-gray-500 mb-1"></i>
                       <span class="text-xs text-gray-400">Change image</span>
-                      <input type="file" id="about-img-after" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
-                      <div id="about-img-after-preview" class="absolute inset-0 rounded-xl overflow-hidden bg-brand-card hidden">
+                      <div id="about-img-after-preview" class="absolute inset-0 rounded-xl overflow-hidden bg-brand-card hidden pointer-events-none">
                         <img src="" class="w-full h-full object-cover">
                       </div>
+                      <input type="file" id="about-img-after" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10">
                     </div>
                   </div>
                 </div>
@@ -249,6 +258,10 @@
                 <div>
                   <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">YouTube URL</label>
                   <input type="url" id="set-youtube" class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">X (Twitter) URL</label>
+                  <input type="url" id="set-twitter" class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white">
                 </div>
               </div>
             </div>
@@ -341,6 +354,8 @@
     let achievementImage1Base64 = null;
     let achievementImage2Base64 = null;
     let achievementImage3Base64 = null;
+    let aboutImgBeforeBase64 = null;
+    let aboutImgAfterBase64 = null;
 
     document.addEventListener("DOMContentLoaded", async () => {
       // 1. Check Auth Session
@@ -603,12 +618,12 @@
           
           if (aboutData.bg_image_before) {
             const previewB = document.getElementById('about-img-before-preview');
-            previewB.children[0].src = aboutData.bg_image_before;
+            previewB.querySelector('img').src = aboutData.bg_image_before;
             previewB.classList.remove('hidden');
           }
           if (aboutData.bg_image_after) {
             const previewA = document.getElementById('about-img-after-preview');
-            previewA.children[0].src = aboutData.bg_image_after;
+            previewA.querySelector('img').src = aboutData.bg_image_after;
             previewA.classList.remove('hidden');
           }
         }
@@ -622,6 +637,7 @@
           document.getElementById('set-facebook').value = settingsData.facebook_url || '';
           document.getElementById('set-linkedin').value = settingsData.linkedin_url || '';
           document.getElementById('set-youtube').value = settingsData.youtube_url || '';
+          document.getElementById('set-twitter').value = settingsData.twitter_url || '';
         }
 
         loader.classList.add('hidden');
@@ -957,6 +973,8 @@
           titleEl.innerText = 'Crop Gallery Photo (4:3)';
         } else if (currentTab === 'achievements') {
           titleEl.innerText = 'Crop Achievement Photo';
+        } else if (currentTab === 'settings') {
+          titleEl.innerText = 'Crop About Section Image (4:5)';
         } else {
           titleEl.innerText = 'Crop Image';
         }
@@ -1106,8 +1124,8 @@
 
     function setupSettingsPreviews() {
       const binds = [
-        { inputId: 'about-img-before', previewId: 'about-img-before-preview' },
-        { inputId: 'about-img-after', previewId: 'about-img-after-preview' }
+        { inputId: 'about-img-before', previewId: 'about-img-before-preview', setVal: (val) => aboutImgBeforeBase64 = val },
+        { inputId: 'about-img-after', previewId: 'about-img-after-preview', setVal: (val) => aboutImgAfterBase64 = val }
       ];
 
       binds.forEach(bind => {
@@ -1117,12 +1135,9 @@
         input.addEventListener('change', (e) => {
           const file = e.target.files[0];
           if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-              preview.querySelector('img').src = reader.result;
-              preview.classList.remove('hidden');
-            };
-            reader.readAsDataURL(file);
+            openCropper(file, preview, 4 / 5, (base64) => {
+              bind.setVal(base64);
+            });
           }
         });
       });
@@ -1317,17 +1332,11 @@
         const fileA = document.getElementById('about-img-after');
         let imgUrlB = '', imgUrlA = '';
 
-        if (fileB.files.length > 0) {
-          const reader = new FileReader();
-          const p = new Promise(resolve => reader.onload = () => resolve(reader.result));
-          reader.readAsDataURL(fileB.files[0]);
-          imgUrlB = await uploadToCloudinary(await p, 'issacc homepage/About');
+        if (aboutImgBeforeBase64) {
+          imgUrlB = await uploadToCloudinary(aboutImgBeforeBase64, 'issacc homepage/About');
         }
-        if (fileA.files.length > 0) {
-          const reader = new FileReader();
-          const p = new Promise(resolve => reader.onload = () => resolve(reader.result));
-          reader.readAsDataURL(fileA.files[0]);
-          imgUrlA = await uploadToCloudinary(await p, 'issacc homepage/About');
+        if (aboutImgAfterBase64) {
+          imgUrlA = await uploadToCloudinary(aboutImgAfterBase64, 'issacc homepage/About');
         }
 
         // 1. Save About Row
@@ -1339,20 +1348,23 @@
         if (imgUrlB) aboutPayload.bg_image_before = imgUrlB;
         if (imgUrlA) aboutPayload.bg_image_after = imgUrlA;
 
-        const aboutRes = await supabaseClient.from('about').upsert(aboutPayload);
+        const aboutRes = await supabaseClient.from('about').update(aboutPayload).eq('id', 1);
         if (aboutRes.error) throw aboutRes.error;
+
+        aboutImgBeforeBase64 = null;
+        aboutImgAfterBase64 = null;
 
         // 2. Save Footer Settings Row
         let settingsPayload = {
-          id: 1,
           contact_email: document.getElementById('set-email').value,
           instagram_url: document.getElementById('set-instagram').value || null,
           facebook_url: document.getElementById('set-facebook').value || null,
           linkedin_url: document.getElementById('set-linkedin').value || null,
-          youtube_url: document.getElementById('set-youtube').value || null
+          youtube_url: document.getElementById('set-youtube').value || null,
+          twitter_url: document.getElementById('set-twitter').value || null
         };
 
-        const settingsRes = await supabaseClient.from('settings').upsert(settingsPayload);
+        const settingsRes = await supabaseClient.from('settings').update(settingsPayload).eq('id', 1);
         if (settingsRes.error) throw settingsRes.error;
 
         alert('Settings saved successfully!');
