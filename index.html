@@ -187,6 +187,12 @@
 </head>
 
 <body class="w-full font-sans text-gray-800 bg-white">
+  <!-- Dynamic Preloader -->
+  <div id="preloader" class="fixed inset-0 bg-[#fdfafc] z-[9999] flex items-center justify-center">
+    <div class="preloader-wrap relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center" style="transform-origin: center center;">
+      <img id="preloader-img" src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/Allure_logo.svg" class="w-full h-full object-contain" />
+    </div>
+  </div>
 
   <!-- Hero Wrapper -->
   <div class="relative w-full min-h-screen flex flex-col overflow-hidden">
@@ -209,9 +215,9 @@
       <!-- Logo (Left, Flex-1 for perfect center alignment of Nav) -->
       <!-- Added items-center and a specific container to handle the image alignment properly -->
       <div class="flex-1 flex justify-start items-center h-full">
-        <a href="#" class="inline-flex items-center -mt-1 lg:-mt-2">
+        <a id="nav-logo-anchor" href="#" class="inline-flex items-center -mt-1 lg:-mt-2 opacity-0">
           <!-- Increased height substantially. mix-blend-multiply ensures any white background becomes transparent -->
-          <img src="issacc.jpg" alt="ISSACC Arts & Cultural"
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/Hero/issacc.png" alt="ISSACC Arts & Cultural"
             class="h-16 md:h-20 lg:h-[88px] w-auto object-left object-contain mix-blend-multiply"
             onerror="this.style.display='none'; document.getElementById('text-logo').style.display='flex';">
 
@@ -226,25 +232,39 @@
 
       <!-- Nav Links (Center, Flex-auto to adapt, perfectly centered) -->
       <nav
-        class="hidden md:flex items-center justify-center gap-8 lg:gap-11 text-[14px] lg:text-[15px] font-medium text-[#111827] font-sans">
-        <div class="relative text-[#5c1392] font-semibold cursor-pointer">
-          Home
-          <div class="absolute -bottom-[8px] left-0 right-0 h-[2px] bg-[#5c1392] rounded-full w-[80%] mx-auto"></div>
-        </div>
-        <a href="#" class="hover:text-[#5c1392] transition-colors">About</a>
-        <a href="#" class="hover:text-[#5c1392] transition-colors">Events</a>
-        <a href="#" class="hover:text-[#5c1392] transition-colors">Gallery</a>
-        <a href="#" class="hover:text-[#5c1392] transition-colors">Teams</a>
-        <a href="#" class="hover:text-[#5c1392] transition-colors">Contact</a>
+        class="hidden md:flex items-center justify-center gap-6 lg:gap-8 text-[14px] lg:text-[15px] font-medium text-[#111827] font-sans">
+        <a href="#about" class="relative py-2 hover:text-[#5c1392] transition-colors duration-300 group">
+          About
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[#5c1392] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
+        </a>
+        <a href="#clubs" class="relative py-2 hover:text-[#5c1392] transition-colors duration-300 group">
+          Clubs
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[#5c1392] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
+        </a>
+        <a href="#events" class="relative py-2 hover:text-[#5c1392] transition-colors duration-300 group">
+          Events
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[#5c1392] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
+        </a>
+        <a href="#achievements" class="relative py-2 hover:text-[#5c1392] transition-colors duration-300 group">
+          Achievements
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[#5c1392] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
+        </a>
+        <a href="#gallery" class="relative py-2 hover:text-[#5c1392] transition-colors duration-300 group">
+          Gallery
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[#5c1392] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
+        </a>
+        <a href="#team" class="relative py-2 hover:text-[#5c1392] transition-colors duration-300 group">
+          Team
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[#5c1392] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
+        </a>
+        <a href="#footer" class="relative py-2 hover:text-[#5c1392] transition-colors duration-300 group">
+          Contact
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[#5c1392] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full"></span>
+        </a>
       </nav>
 
       <!-- Join Us Button (Right, Flex-1) -->
       <div class="flex-1 flex justify-end">
-        <a href="#"
-          class="hidden md:flex items-center gap-2 px-6 py-[10px] rounded-xl text-white font-medium text-[14px] bg-gradient-primary shadow-lg shadow-purple-900/25 hover:opacity-90 transition-all font-sans">
-          Join Us <i class="ri-arrow-right-line text-[16px] -mr-1"></i>
-        </a>
-
         <!-- Mobile Menu Button -->
         <button id="mobile-menu-btn" onclick="toggleMenu()"
           class="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-[5px] z-50 focus:outline-none bg-transparent border-none">
@@ -260,26 +280,22 @@
     <!-- Mobile Fullscreen Menu Overlay -->
     <div id="mobile-menu"
       class="fixed inset-0 z-40 bg-[#faf5ff]/95 backdrop-blur-2xl flex flex-col justify-center items-center md:hidden">
-      <nav class="flex flex-col items-center gap-7 text-4xl font-outfit font-bold tracking-tight w-full px-6">
-        <a href="#"
-          class="mobile-link text-transparent bg-clip-text bg-gradient-primary hover:scale-105 transition-transform duration-300">Home</a>
-        <a href="#"
+      <nav class="flex flex-col items-center gap-5 text-3xl font-outfit font-bold tracking-tight w-full px-6">
+        <a href="#about"
           class="mobile-link text-[#13172b] hover:text-[#5c1392] hover:scale-105 transition-transform duration-300">About</a>
-        <a href="#"
+        <a href="#clubs"
+          class="mobile-link text-[#13172b] hover:text-[#5c1392] hover:scale-105 transition-transform duration-300">Clubs</a>
+        <a href="#events"
           class="mobile-link text-[#13172b] hover:text-[#5c1392] hover:scale-105 transition-transform duration-300">Events</a>
-        <a href="#"
+        <a href="#achievements"
+          class="mobile-link text-[#13172b] hover:text-[#5c1392] hover:scale-105 transition-transform duration-300">Achievements</a>
+        <a href="#gallery"
           class="mobile-link text-[#13172b] hover:text-[#5c1392] hover:scale-105 transition-transform duration-300">Gallery</a>
-        <a href="#"
-          class="mobile-link text-[#13172b] hover:text-[#5c1392] hover:scale-105 transition-transform duration-300">Teams</a>
-        <a href="#"
+        <a href="#team"
+          class="mobile-link text-[#13172b] hover:text-[#5c1392] hover:scale-105 transition-transform duration-300">Team</a>
+        <a href="#footer"
           class="mobile-link text-[#13172b] hover:text-[#5c1392] hover:scale-105 transition-transform duration-300">Contact</a>
       </nav>
-      <div class="mt-14 mobile-btn-container">
-        <a href="#"
-          class="flex items-center gap-2 px-8 py-4 rounded-xl text-white font-semibold text-[17px] bg-gradient-primary shadow-xl shadow-purple-900/30 active:scale-95 transition-all font-sans">
-          Join Us <i class="ri-arrow-right-line text-[20px] -mr-1"></i>
-        </a>
-      </div>
     </div>
 
     <!-- Hero Section -->
@@ -311,18 +327,7 @@
           development.
         </p>
 
-        <!-- Buttons -->
-        <div
-          class="hidden sm:flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-8 mb-10 lg:mb-20 w-full sm:w-auto">
-          <a href="#"
-            class="flex items-center justify-center gap-2 px-7 py-[14px] rounded-xl text-white font-semibold text-[16px] lg:text-[15px] bg-gradient-primary shadow-xl shadow-purple-900/25 hover:shadow-purple-900/40 hover:-translate-y-[2px] transition-all duration-300 font-sans w-full sm:w-auto">
-            Explore Events <i class="ri-arrow-right-line text-[18px] -mr-1"></i>
-          </a>
-          <a href="#"
-            class="flex sm:inline-flex items-center justify-center px-7 py-[14px] sm:p-0 rounded-xl sm:rounded-none text-[#6c18a4] font-semibold text-[16px] lg:text-[15px] border border-[#6c18a4] sm:border-0 sm:border-b-2 sm:border-[#5c1392]/20 sm:pb-0.5 hover:border-[#5c1392] hover:bg-purple-50 sm:hover:bg-transparent transition-all font-sans w-full sm:w-auto">
-            Learn More
-          </a>
-        </div>
+
 
         <!-- Desktop Scroll Down Indicator -->
         <div class="hidden lg:flex items-center gap-4 text-gray-500 font-medium text-[13px]">
@@ -338,7 +343,7 @@
       <div class="w-full lg:w-[50%] relative flex justify-center lg:justify-end mt-12 mb-8 sm:mt-8 lg:mb-0 lg:mt-0">
         <!-- Monument Image -->
         <!-- Added scale-125 for mobile to dramatically increase its size and make it bleed edge-to-edge -->
-        <img src="monument.png" alt="Cultural Monument Artwork"
+        <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/Hero/monument.png" alt="Cultural Monument Artwork"
           class="w-full max-w-[550px] lg:max-w-[1000px] scale-125 sm:scale-100 lg:scale-[1.15] lg:translate-x-12 monument-img object-contain">
       </div>
 
@@ -406,7 +411,7 @@
                 <span class="text-transparent bg-clip-text bg-gradient-primary">Opportunity.</span>
               </h3>
 
-              <p
+              <p id="about-vision-text"
                 class="text-gray-500 font-medium text-[15px] lg:text-[16px] leading-[1.8] max-w-[360px] lg:max-w-[380px] mb-8">
                 The Instech Students Sports and Cultural Council (ISSACC) manages the vibrant extracurricular ecosystem
                 at IET Lucknow. We cater to over 2,800 students, deeply rooted in the motto <strong
@@ -430,7 +435,7 @@
                 <span class="text-transparent bg-clip-text bg-gradient-primary">Community Spirit.</span>
               </h3>
 
-              <p class="text-gray-500 font-medium text-[15px] leading-[1.7] max-w-[360px] lg:max-w-[380px] mb-6">
+              <p id="about-story-text" class="text-gray-500 font-medium text-[15px] leading-[1.7] max-w-[360px] lg:max-w-[380px] mb-6">
                 Balancing the rigors of an engineering curriculum, ISSACC acts as an incubator for non-technical skills.
                 We provide practical platforms for students to learn logistics, sponsorship, marketing, and conflict
                 resolution.
@@ -481,8 +486,7 @@
           <!-- Main Image Placeholder (Glassmorphic Window) -->
           <div
             class="relative w-full max-w-[380px] lg:max-w-[440px] aspect-[4/5] bg-white/40 backdrop-blur-3xl border border-white/80 rounded-[40px] shadow-2xl shadow-purple-900/15 overflow-hidden flex items-center justify-center group">
-            <!-- Utilizing the monument image as a high-fashion textured background inside the frame -->
-            <img src="monument.png"
+            <img id="about-bg-img" src=""
               class="absolute inset-0 w-full h-full object-cover scale-[2] opacity-50 mix-blend-multiply group-hover:scale-[1.8] group-hover:opacity-70 transition-all duration-1000 ease-out"
               alt="Art">
             <div
@@ -516,7 +520,7 @@
   <section id="events" class="w-full relative pb-6 pt-0 bg-white z-20 overflow-hidden text-[#13172b] cursor-default">
 
     <div id="events-layout-container"
-      class="max-w-[1300px] mx-auto px-6 md:px-10 lg:px-12 flex flex-col lg:flex-row lg:justify-center gap-16 lg:gap-24 relative transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
+      class="max-w-[1300px] mx-auto px-6 md:px-10 lg:px-12 flex flex-col lg:flex-row lg:justify-center gap-16 lg:gap-24 relative lg:min-h-[650px] transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
 
       <!-- Left: Events List -->
       <div id="events-list-wrapper"
@@ -781,7 +785,7 @@
 
       <!-- Right: Fixed Viewport (Detail Image) -->
       <div id="events-sticky-panel"
-        class="hidden -mx-6 md:-mx-10 lg:mx-0 w-[calc(100%+48px)] md:w-[calc(100%+80px)] lg:w-0 opacity-0 overflow-hidden shrink-0 transition-[width,opacity] lg:transition-[width,opacity] duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative h-0 lg:h-auto mb-8 lg:mb-0 order-1 lg:order-none flex touch-pan-y">
+        class="hidden -mx-6 md:-mx-10 lg:mx-0 w-[calc(100%+48px)] md:w-[calc(100%+80px)] lg:w-0 opacity-0 overflow-hidden shrink-0 transition-[width,opacity,height] lg:transition-[width,opacity,height] duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] relative h-0 lg:h-[580px] mb-8 lg:mb-0 order-1 lg:order-none flex touch-pan-y">
         <div class="w-full h-full rounded-none lg:rounded-[40px] overflow-hidden lg:shadow-2xl relative group"
           style="transform: translateZ(0); -webkit-mask-image: -webkit-radial-gradient(white, black);">
 
@@ -815,7 +819,7 @@
   </section>
 
   <!-- Clubs Section -->
-  <section class="w-full bg-white pt-12 pb-24 border-t border-purple-100/30">
+  <section id="clubs" class="w-full bg-white pt-12 pb-24 border-t border-purple-100/30">
     <div class="max-w-[1300px] mx-auto px-6 md:px-10 lg:px-12">
       <div class="flex flex-col mb-16">
         <div class="flex items-center gap-4 mb-6">
@@ -832,134 +836,825 @@
       </div>
 
       <!-- 4x4 Logo Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8 justify-items-center justify-center">
+      <div id="clubs-grid-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 md:gap-8 justify-items-center justify-center">
 
         <!-- Allure -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/Allure_logo.svg" alt="Allure" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/Allure_logo.svg" alt="Allure" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- SAE -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/Sae_logo.svg" alt="SAE" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/Sae_logo.svg" alt="SAE" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Auroras -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/auroras_logo.svg" alt="Auroras" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/auroras_logo.svg" alt="Auroras" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Excelsior -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/excelsior_logo.svg" alt="Excelsior" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/excelsior_logo.svg" alt="Excelsior" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Fractal -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/fractal_logo.svg" alt="Fractal" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/fractal_logo.svg" alt="Fractal" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Insaniax -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/insaniax_logo.svg" alt="Insaniax" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/insaniax_logo.svg" alt="Insaniax" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Josh -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/josh_logo.svg" alt="Josh" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/josh_logo.svg" alt="Josh" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Kalakriti -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/kalakriti_logo.svg" alt="Kalakriti" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/kalakriti_logo.svg" alt="Kalakriti" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- MAC -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/mac_logo.svg" alt="MAC" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/mac_logo.svg" alt="MAC" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Mirage -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/mirage_logo.svg" alt="Mirage" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/mirage_logo.svg" alt="Mirage" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Parmarth -->
-        <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/parmarth_logo.svg" alt="Parmarth" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
-        </div>
+        <a href="https://parmarth.ietlucknow.ac.in/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/parmarth_logo.svg" alt="Parmarth" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+        </a>
 
         <!-- Robotics -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/robotics_logo.svg" alt="Robotics" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/robotics_logo.svg" alt="Robotics" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Sports Club -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/sportsclub_logo.svg" alt="Sports Club" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/sportsclub_logo.svg" alt="Sports Club" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Swaranjali -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/swaranjali_logo.svg" alt="Swaranjali" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/swaranjali_logo.svg" alt="Swaranjali" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Whiteboard -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/whiteboard_logo.svg" alt="Whiteboard" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/whiteboard_logo.svg" alt="Whiteboard" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
         <!-- Exclsr -->
         <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
-          <img src="Club/logos_white/exclsr_logo.svg" alt="Exclsr" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+          <img src="https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/exclsr_logo.svg" alt="Exclsr" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Light Theme Minimal Footer -->
-  <footer class="relative w-full overflow-hidden bg-white pt-24 pb-10 mt-10">
-    <!-- Top Reverse Wave (matches hero) -->
-    <svg class="absolute top-0 left-0 w-full z-0 pointer-events-none rotate-180" viewBox="0 0 1440 320" preserveAspectRatio="none" style="height: 15vh; min-height: 120px; opacity: 0.8;">
-      <path fill="#fcf7fe" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,165.3C960,149,1056,171,1152,176C1248,181,1344,171,1392,165.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-    </svg>
-    <svg class="absolute top-0 left-0 w-full z-0 pointer-events-none rotate-180" viewBox="0 0 1440 320" preserveAspectRatio="none" style="height: 20vh; min-height: 160px; opacity: 0.4; margin-top: -5vh;">
-      <path fill="#f7eef9" d="M0,256L48,240C96,224,192,192,288,181.3C384,171,480,181,576,197.3C672,213,768,235,864,229.3C960,224,1056,192,1152,170.7C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-    </svg>
-    
-    <div class="max-w-[1200px] mx-auto px-6 relative z-10 flex flex-col items-center justify-center pt-10">
-      <!-- Big Email Link -->
-      <a href="mailto:issacc@ietlucknow.ac.in" class="group relative inline-block mb-16 text-center">
-        <h2 class="font-outfit font-black text-3xl md:text-5xl lg:text-7xl text-[#13172b] tracking-tighter transition-colors duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#bd32b1] group-hover:to-[#5c1392]">
-          issacc@ietlucknow.ac.in
+  <!-- Achievements Section -->
+  <section id="achievements" class="w-full bg-white pt-12 pb-0 border-t border-purple-100/30">
+    <div class="max-w-[1300px] mx-auto px-6 md:px-10 lg:px-12">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col mb-16">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="w-2.5 h-2.5 shrink-0 bg-[#bd32b1] rounded-full animate-pulse shadow-[0_0_10px_#bd32b1]"></span>
+          <span class="text-[#bd32b1] font-bold text-sm uppercase tracking-[0.3em]">Hall of Fame</span>
+        </div>
+        <h2 class="font-outfit font-black text-[50px] lg:text-[72px] leading-[0.95] tracking-[-0.03em] text-[#13172b] mb-6">
+          Where Dedication<br>
+          Meets <span class="text-transparent bg-clip-text bg-gradient-primary">Victory.</span>
         </h2>
-        <div class="absolute -bottom-2 md:-bottom-4 left-0 right-0 h-1 md:h-2 bg-gradient-to-r from-[#bd32b1] to-[#5c1392] rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"></div>
-      </a>
-      
-      <!-- Socials -->
-      <div class="flex items-center gap-6 md:gap-10 mb-24">
-        <a href="https://instagram.com/issacc_iet" target="_blank" class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white border border-purple-100 flex items-center justify-center text-[#5c1392] text-2xl md:text-3xl shadow-sm hover:bg-gradient-primary hover:text-white hover:border-transparent hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-900/30 transition-all duration-300">
-          <i class="ri-instagram-line"></i>
-        </a>
-        <a href="#" target="_blank" class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white border border-purple-100 flex items-center justify-center text-[#5c1392] text-2xl md:text-3xl shadow-sm hover:bg-gradient-primary hover:text-white hover:border-transparent hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-900/30 transition-all duration-300">
-          <i class="ri-linkedin-fill"></i>
-        </a>
-        <a href="#" target="_blank" class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white border border-purple-100 flex items-center justify-center text-[#5c1392] text-2xl md:text-3xl shadow-sm hover:bg-gradient-primary hover:text-white hover:border-transparent hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-900/30 transition-all duration-300">
-          <i class="ri-youtube-fill"></i>
-        </a>
+        <p class="text-gray-500 font-medium text-base md:text-lg max-w-2xl leading-relaxed">
+          Nurturing technical expertise, leadership qualities, and extracurricular excellence to shape industry-ready leaders.
+        </p>
       </div>
-      
-      <!-- Minimal Divider -->
-      <div class="w-full h-[1px] bg-purple-100/50 mb-8"></div>
-      
-      <!-- Bottom Text -->
-      <div class="w-full flex flex-col md:flex-row items-center justify-between text-gray-400 text-sm font-medium px-4">
-        <p>&copy; 2026 ISSACC. IET Lucknow.</p>
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-[#5c1392] transition-colors mt-6 md:mt-0 flex items-center gap-2 group cursor-pointer pointer-events-auto">
-          Back to Top <i class="ri-arrow-up-line group-hover:-translate-y-1 transition-transform"></i>
-        </button>
+
+      <!-- Stacking Card Container -->
+      <div id="achievements-container" class="relative flex flex-col gap-16 md:gap-24 w-full pb-32">
+
+        <!-- Card 1 -->
+        <div class="lg:sticky lg:top-[20px] w-full bg-[#161616] border border-neutral-800/80 rounded-[32px] md:rounded-[40px] p-6 md:p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] transition-all duration-500 hover:border-neutral-700/80">
+          
+          <!-- Header -->
+          <div class="flex justify-between items-start mb-6">
+            <div class="flex items-center">
+              <!-- Huge Number -->
+              <span class="font-outfit font-black text-5xl md:text-7xl text-neutral-400 tracking-tighter leading-none select-none">01</span>
+              <!-- Category & Title -->
+              <div class="ml-4 md:ml-6 flex flex-col">
+                <span class="text-[#bd32b1] font-bold text-xs md:text-sm tracking-widest uppercase">BEST GOVT. ENGINEERING COLLEGE</span>
+                <span class="text-white font-outfit font-bold text-lg md:text-2xl mt-1 tracking-tight">India Excellence Award</span>
+              </div>
+            </div>
+            
+            <!-- Action Pill Button -->
+            <span class="border border-neutral-700 text-[10px] md:text-xs text-neutral-300 px-4 py-2 rounded-full tracking-wider font-semibold uppercase select-none">
+              Accreditation
+            </span>
+          </div>
+
+          <!-- Description Text -->
+          <p class="text-neutral-400 font-medium text-sm md:text-base leading-relaxed max-w-4xl mb-8">
+            Awarded the <strong class="text-white font-semibold">"India Excellence Award 2017"</strong>, naming IET Lucknow the best government engineering college in North India for outstanding academic and extracurricular balance.
+          </p>
+
+          <!-- 3-Image Grid -->
+          <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Column (2 Small Stacked Images) -->
+            <div class="w-full md:w-5/12 flex flex-col gap-6">
+              <div class="w-full h-[180px] md:h-[220px] overflow-hidden rounded-[24px] bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" alt="IET Lucknow Campus" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="w-full h-[180px] md:h-[220px] overflow-hidden rounded-[24px] bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Extracurricular Team" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+            </div>
+            <!-- Right Column (1 Large Image) -->
+            <div class="w-full md:w-7/12">
+              <div class="w-full h-[384px] md:h-[464px] overflow-hidden rounded-[24px] bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80" alt="Academic & Extracurricular Excellence" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Card 2 -->
+        <div class="lg:sticky lg:top-[50px] w-full bg-[#161616] border border-neutral-800/80 rounded-[32px] md:rounded-[40px] p-6 md:p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] transition-all duration-500 hover:border-neutral-700/80">
+          
+          <!-- Header -->
+          <div class="flex justify-between items-start mb-6">
+            <div class="flex items-center">
+              <!-- Huge Number -->
+              <span class="font-outfit font-black text-5xl md:text-7xl text-neutral-400 tracking-tighter leading-none select-none">02</span>
+              <!-- Category & Title -->
+              <div class="ml-4 md:ml-6 flex flex-col">
+                <span class="text-[#bd32b1] font-bold text-xs md:text-sm tracking-widest uppercase">NATIONAL CHAMPIONS</span>
+                <span class="text-white font-outfit font-bold text-lg md:text-2xl mt-1 tracking-tight">IIT Bombay E-Yantra & SIH</span>
+              </div>
+            </div>
+            
+            <!-- Action Pill Button -->
+            <span class="border border-neutral-700 text-[10px] md:text-xs text-neutral-300 px-4 py-2 rounded-full tracking-wider font-semibold uppercase select-none">
+              Hackathon / Robotics
+            </span>
+          </div>
+
+          <!-- Description Text -->
+          <p class="text-neutral-400 font-medium text-sm md:text-base leading-relaxed max-w-4xl mb-8">
+            Student clubs dominate premier platforms, including winning the national <strong class="text-white font-semibold">"Smart India Hackathon"</strong> and the national <strong class="text-white font-semibold">E-yantra competition</strong> at IIT Bombay.
+          </p>
+
+          <!-- 3-Image Grid -->
+          <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Column (2 Small Stacked Images) -->
+            <div class="w-full md:w-5/12 flex flex-col gap-6">
+              <div class="w-full h-[180px] md:h-[220px] overflow-hidden rounded-[24px] bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Robotics Development" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="w-full h-[180px] md:h-[220px] overflow-hidden rounded-[24px] bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Hackathon Sprint" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+            </div>
+            <!-- Right Column (1 Large Image) -->
+            <div class="w-full md:w-7/12">
+              <div class="w-full h-[384px] md:h-[464px] overflow-hidden rounded-[24px] bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80" alt="IIT Bombay E-Yantra" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Card 3 -->
+        <div class="lg:sticky lg:top-[80px] w-full bg-[#161616] border border-neutral-800/80 rounded-[32px] md:rounded-[40px] p-6 md:p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] transition-all duration-500 hover:border-neutral-700/80">
+          
+          <!-- Header -->
+          <div class="flex justify-between items-start mb-6">
+            <div class="flex items-center">
+              <!-- Huge Number -->
+              <span class="font-outfit font-black text-5xl md:text-7xl text-neutral-400 tracking-tighter leading-none select-none">03</span>
+              <!-- Category & Title -->
+              <div class="ml-4 md:ml-6 flex flex-col">
+                <span class="text-[#bd32b1] font-bold text-xs md:text-sm tracking-widest uppercase">NATIONAL WINNERS</span>
+                <span class="text-white font-outfit font-bold text-lg md:text-2xl mt-1 tracking-tight">Go-Kart Design Challenge</span>
+              </div>
+            </div>
+            
+            <!-- Action Pill Button -->
+            <span class="border border-neutral-700 text-[10px] md:text-xs text-neutral-300 px-4 py-2 rounded-full tracking-wider font-semibold uppercase select-none">
+              Automotive
+            </span>
+          </div>
+
+          <!-- Description Text -->
+          <p class="text-neutral-400 font-medium text-sm md:text-base leading-relaxed max-w-4xl mb-8">
+            The <strong class="text-white font-semibold">SAE Collegiate Club</strong> successfully designed, fabricated, and raced automotive prototypes to win the national <strong class="text-white font-semibold">Go-Kart Design Challenge</strong>.
+          </p>
+
+          <!-- 3-Image Grid -->
+          <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Column (2 Small Stacked Images) -->
+            <div class="w-full md:w-5/12 flex flex-col gap-6">
+              <div class="w-full h-[180px] md:h-[220px] overflow-hidden rounded-[24px] bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=800&q=80" alt="Go-Kart Assembly" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="w-full h-[180px] md:h-[220px] overflow-hidden rounded-[24px] bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80" alt="Engine Dynamics" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+            </div>
+            <!-- Right Column (1 Large Image) -->
+            <div class="w-full md:w-7/12">
+              <div class="w-full h-[180px] md:h-[464px] overflow-hidden rounded-[24px] bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80" alt="Go-Kart Racing Track" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="w-full bg-[#fcfcfd] pt-24 pb-20 border-t border-purple-100/30 relative overflow-hidden">
+    <!-- Subtle artistic background glow -->
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-100/30 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-100/20 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+
+    <div class="max-w-[1300px] mx-auto px-6 md:px-10 lg:px-12">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col mb-20">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="w-2.5 h-2.5 shrink-0 bg-[#bd32b1] rounded-full animate-pulse shadow-[0_0_10px_#bd32b1]"></span>
+          <span class="text-[#bd32b1] font-bold text-sm uppercase tracking-[0.3em]">Our People</span>
+        </div>
+        <h2 class="font-outfit font-black text-[50px] lg:text-[72px] leading-[0.95] tracking-[-0.03em] text-[#13172b] mb-6">
+          Meet the <span class="text-transparent bg-clip-text bg-gradient-primary">Team.</span>
+        </h2>
+        <p class="text-gray-500 font-medium text-base md:text-lg max-w-2xl leading-relaxed">
+          The dedicated faculty advisors and student representatives who drive ISSACC's vision forward.
+        </p>
+      </div>
+
+      <style>
+        /* Float Bloom for Faculty */
+        .bloom-wrapper {
+          position: relative;
+          width: 180px;
+          height: 180px;
+          margin: 0 auto;
+          border-radius: 50%;
+          transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+          z-index: 2;
+        }
+        @media (min-width: 768px) {
+          .bloom-wrapper {
+            width: 200px;
+            height: 200px;
+          }
+        }
+        .bloom-shadow {
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #bd32b1, #5c1392);
+          filter: blur(20px);
+          opacity: 0;
+          transform: translateY(10px) scale(0.8);
+          transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+          z-index: -1;
+        }
+        .bloom-wrapper:hover {
+          transform: translateY(-12px);
+        }
+        .bloom-wrapper:hover .bloom-shadow {
+          opacity: 0.6;
+          transform: translateY(20px) scale(1.1);
+        }
+        .bloom-img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid transparent;
+          transition: border-color 0.5s ease;
+          box-shadow: 0 15px 35px -10px rgba(92,19,146,0.1);
+        }
+        .bloom-wrapper:hover .bloom-img {
+          border-color: #bd32b1;
+        }
+
+        /* SVG Draw Orbit for Students */
+        .svg-draw-wrapper {
+          position: relative;
+          width: 180px;
+          height: 180px;
+          margin: 0 auto;
+          border-radius: 50%;
+        }
+        @media (min-width: 768px) {
+          .svg-draw-wrapper {
+            width: 200px;
+            height: 200px;
+          }
+        }
+        .svg-draw-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          padding: 8px;
+          transition: transform 0.4s ease;
+          background: #fcfcfd;
+          box-shadow: 0 15px 35px -10px rgba(92,19,146,0.1);
+        }
+        .svg-draw-wrapper:hover .svg-draw-img {
+          transform: scale(0.95);
+        }
+        .svg-draw-ring {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          transform: rotate(-90deg);
+        }
+        .svg-draw-circle {
+          fill: none;
+          stroke: #bd32b1;
+          stroke-width: 4;
+          stroke-dasharray: 628;
+          stroke-dashoffset: 628;
+          stroke-linecap: round;
+          transition: stroke-dashoffset 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .svg-draw-wrapper:hover .svg-draw-circle {
+          stroke-dashoffset: 0;
+        }
+      </style>
+
+      <!-- Faculty Row -->
+      <div id="team-faculty-container" class="flex flex-wrap justify-center gap-16 md:gap-32 mb-20 text-center">
+        
+        <!-- Faculty Card 1 -->
+        <div class="group cursor-pointer">
+          <div class="bloom-wrapper">
+            <div class="bloom-shadow"></div>
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" alt="Prof. Vineet Kansal" class="bloom-img" />
+          </div>
+          <div class="mt-6 transition-transform duration-300 group-hover:-translate-y-1">
+            <h4 class="font-outfit font-black text-xl text-[#13172b]">Prof. Vineet Kansal</h4>
+            <p class="text-[11px] font-bold text-[#bd32b1] uppercase tracking-[0.15em] mt-1.5">Director & Patron</p>
+          </div>
+        </div>
+
+        <!-- Faculty Card 2 -->
+        <div class="group cursor-pointer">
+          <div class="bloom-wrapper">
+            <div class="bloom-shadow"></div>
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" alt="Dr. Subodh Wairya" class="bloom-img" />
+          </div>
+          <div class="mt-6 transition-transform duration-300 group-hover:-translate-y-1">
+            <h4 class="font-outfit font-black text-xl text-[#13172b]">Dr. Subodh Wairya</h4>
+            <p class="text-[11px] font-bold text-[#bd32b1] uppercase tracking-[0.15em] mt-1.5">Convenor</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Student Row -->
+      <div id="team-student-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 justify-items-center text-center">
+        
+        <!-- Student Card 1 -->
+        <div class="group cursor-pointer">
+          <div class="svg-draw-wrapper">
+            <svg class="svg-draw-ring" viewBox="0 0 210 210">
+              <circle class="svg-draw-circle" cx="105" cy="105" r="100"></circle>
+            </svg>
+            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80" alt="Abhay Pratap Singh" class="svg-draw-img" />
+          </div>
+          <div class="mt-6 transition-transform duration-300 group-hover:-translate-y-1">
+            <h4 class="font-outfit font-black text-lg text-[#13172b]">Abhay Pratap Singh</h4>
+            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em] mt-1.5">Secretary</p>
+          </div>
+        </div>
+
+        <!-- Student Card 2 -->
+        <div class="group cursor-pointer">
+          <div class="svg-draw-wrapper">
+            <svg class="svg-draw-ring" viewBox="0 0 210 210">
+              <circle class="svg-draw-circle" cx="105" cy="105" r="100"></circle>
+            </svg>
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt="Anjali Mishra" class="svg-draw-img" />
+          </div>
+          <div class="mt-6 transition-transform duration-300 group-hover:-translate-y-1">
+            <h4 class="font-outfit font-black text-lg text-[#13172b]">Anjali Mishra</h4>
+            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em] mt-1.5">Joint Secretary</p>
+          </div>
+        </div>
+
+        <!-- Student Card 3 -->
+        <div class="group cursor-pointer">
+          <div class="svg-draw-wrapper">
+            <svg class="svg-draw-ring" viewBox="0 0 210 210">
+              <circle class="svg-draw-circle" cx="105" cy="105" r="100"></circle>
+            </svg>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Shivam Maurya" class="svg-draw-img" />
+          </div>
+          <div class="mt-6 transition-transform duration-300 group-hover:-translate-y-1">
+            <h4 class="font-outfit font-black text-lg text-[#13172b]">Shivam Maurya</h4>
+            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em] mt-1.5">Technical Lead</p>
+          </div>
+        </div>
+
+        <!-- Student Card 4 -->
+        <div class="group cursor-pointer">
+          <div class="svg-draw-wrapper">
+            <svg class="svg-draw-ring" viewBox="0 0 210 210">
+              <circle class="svg-draw-circle" cx="105" cy="105" r="100"></circle>
+            </svg>
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Priyansh Saxena" class="svg-draw-img" />
+          </div>
+          <div class="mt-6 transition-transform duration-300 group-hover:-translate-y-1">
+            <h4 class="font-outfit font-black text-lg text-[#13172b]">Priyansh Saxena</h4>
+            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em] mt-1.5">Design Lead</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="w-full bg-[#fdfafc] pt-16 pb-32 border-t border-purple-100/30 overflow-hidden">
+    <div class="max-w-[1300px] mx-auto px-6 md:px-10 lg:px-12 mb-16 md:mb-24">
+      <!-- Section Header -->
+      <div class="flex flex-col">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="w-2.5 h-2.5 shrink-0 bg-[#bd32b1] rounded-full animate-pulse shadow-[0_0_10px_#bd32b1]"></span>
+          <span class="text-[#bd32b1] font-bold text-sm uppercase tracking-[0.3em]">Visual Journey</span>
+        </div>
+        <h2 class="font-outfit font-black text-[50px] lg:text-[72px] leading-[0.95] tracking-[-0.03em] text-[#13172b] mb-6">
+          Moments in<br>
+          <span class="text-transparent bg-clip-text bg-gradient-primary">Motion.</span>
+        </h2>
+        <p class="text-gray-500 font-medium text-base md:text-lg max-w-2xl leading-relaxed">
+          A dynamic, continuous stream of experiences, campus life, and major milestones at IET Lucknow fests.
+        </p>
+      </div>
+    </div> <!-- Close max-w-[1300px] grid container -->
+
+      <!-- Marquee Local Styles (Slant & Grayscale Burst Quirks) -->
+      <style>
+        @keyframes marquee-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-right {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .marquee-track-left {
+          animation: marquee-left 45s linear infinite;
+        }
+        .marquee-track-right {
+          animation: marquee-right 45s linear infinite;
+        }
+        .marquee-container:hover .marquee-track-left,
+        .marquee-container:hover .marquee-track-right {
+          animation-play-state: paused;
+        }
+        /* Editorial Slant Quirk */
+        .marquee-slanted-wrapper {
+          transform: rotate(-1.5deg) scale(1.03);
+          width: 110vw;
+          margin-left: -5vw;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        }
+      </style>
+
+      <!-- Marquee Tracks wrapper with slant -->
+      <div class="marquee-container flex flex-col gap-6 md:gap-8 w-full overflow-hidden select-none marquee-slanted-wrapper">
+        
+        <!-- Row 1: Scrolling Left -->
+        <div id="marquee-row-1" class="relative w-full flex overflow-hidden">
+          <div class="marquee-track-left flex gap-0 shrink-0">
+            <!-- Card 1: Campus Life -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80', 'Fostering lifelong friendships and leadership through student initiatives.')">
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Campus Life" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 2: Robotics -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80', 'Hands-on engineering and robotics work at the campus lab.')">
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Robotics Innovation" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 3: Hackathon -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80', 'Teams solving complex real-world challenges at the annual Hackathon.')">
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Hackathon Sprint" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 4: Leadership -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80', 'Students leading organization dynamics and strategic management.')">
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Leadership Training" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 5: Tech Expo -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80', 'Advanced engineering exhibitions and showcase of prototypes.')">
+              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=cover&w=800&q=80" alt="Tech Exhibition" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+
+            <!-- Cloned Set for Seamless Infinite Scrolling Loop -->
+            <!-- Card 1 Clone -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80', 'Fostering lifelong friendships and leadership through student initiatives.')">
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Campus Life" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 2 Clone -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80', 'Hands-on engineering and robotics work at the campus lab.')">
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Robotics Innovation" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 3 Clone -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80', 'Teams solving complex real-world challenges at the annual Hackathon.')">
+              <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Hackathon Sprint" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 4 Clone -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80', 'Students leading organization dynamics and strategic management.')">
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Leadership Training" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 5 Clone -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80', 'Advanced engineering exhibitions and showcase of prototypes.')">
+              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=cover&w=800&q=80" alt="Tech Exhibition" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Scrolling Right -->
+        <div id="marquee-row-2" class="relative w-full flex overflow-hidden">
+          <div class="marquee-track-right flex gap-0 shrink-0">
+            <!-- Card 6: Stage Concert -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80', 'The electric atmosphere of live musical performances at cultural fests.')">
+              <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80" alt="Stage Concert" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 7: SAE Go-Kart -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80', 'The SAE Collegiate Club testing custom-built karts.')">
+              <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80" alt="SAE Go-Kart" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 8: Cultural Fest -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80', 'Annual cultural festivals hosting campus wide celebrations.')">
+              <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" alt="Fest Celebrations" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 9: Victory -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1531058020387-3be344559be6?auto=format&fit=crop&w=1200&q=80', 'Celebrating victory and shared milestones after months of hard work.')">
+              <img src="https://images.unsplash.com/photo-1531058020387-3be344559be6?auto=format&fit=crop&w=800&q=80" alt="Victory Celebration" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 10: Campus Milestones -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80', 'IET Lucknow campus hosting major national level fests.')">
+              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" alt="National Fests" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+
+            <!-- Cloned Set for Seamless Infinite Scrolling Loop -->
+            <!-- Card 6 Clone -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80', 'The electric atmosphere of live musical performances at cultural fests.')">
+              <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80" alt="Stage Concert" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 7 Clone -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80', 'The SAE Collegiate Club testing custom-built karts.')">
+              <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=800&q=80" alt="SAE Go-Kart" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 8 Clone -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80', 'Annual cultural festivals hosting campus wide celebrations.')">
+              <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" alt="Fest Celebrations" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 9 Clone -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1531058020387-3be344559be6?auto=format&fit=crop&w=1200&q=80', 'Celebrating victory and shared milestones after months of hard work.')">
+              <img src="https://images.unsplash.com/photo-1531058020387-3be344559be6?auto=format&fit=crop&w=800&q=80" alt="Victory Celebration" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+            <!-- Card 10 Clone -->
+            <div class="group relative h-[180px] md:h-[240px] shrink-0 rounded-none overflow-hidden border-0 shadow-none cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80', 'IET Lucknow campus hosting major national level fests.')">
+              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" alt="National Fests" class="h-full w-auto object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Lightbox Overlay -->
+  <div id="gallery-lightbox" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 md:p-10 select-none transition-opacity duration-300">
+    <!-- Backdrop blur & click to close -->
+    <div class="absolute inset-0 bg-black/90 backdrop-blur-md cursor-zoom-out transition-opacity duration-300" onclick="closeLightbox()"></div>
+    
+    <!-- Image & Caption Wrapper -->
+    <div class="relative z-10 max-w-[1100px] w-full flex flex-col items-center">
+      <!-- Close Button -->
+      <button class="absolute -top-12 right-0 text-white/70 hover:text-white text-3xl font-light focus:outline-none transition-colors" onclick="closeLightbox()">
+        <i class="ri-close-line"></i>
+      </button>
+      
+      <!-- Big Lightbox Image -->
+      <img id="lightbox-img" src="" alt="Zoomed view" class="max-h-[75vh] max-w-full rounded-2xl object-contain shadow-2xl transition-all duration-300" />
+      
+      <!-- Caption Description Text -->
+      <p id="lightbox-title" class="text-neutral-400 font-medium text-sm md:text-base text-center mt-6 max-w-2xl px-4 leading-relaxed"></p>
+    </div>
+  </div>
+
+  <!-- Light Rounded Footer (Matches Image) -->
+  <footer id="footer" class="w-full bg-[#fdfafc] p-4 md:p-6 lg:p-8 lg:h-[95vh] min-h-[650px] max-h-[900px]">
+    <div class="relative w-full h-full bg-[#f9f9f9] rounded-[2.5rem] md:rounded-[4rem] px-8 md:px-12 lg:px-16 pt-8 lg:pt-10 pb-0 shadow-sm border border-gray-200 flex flex-col justify-between" style="overflow:hidden;isolation:isolate;transform:translateZ(0);-webkit-transform:translateZ(0);">
+      
+      <!-- Top Content Row (Everything side-by-side) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 w-full z-10">
+        
+        <!-- Column 1: Massive Interactive CTA with State Swap -->
+        <div class="lg:col-span-6 h-full">
+          <a id="footer-email" href="mailto:issacc@ietlucknow.ac.in" class="group relative w-full h-full min-h-[250px] bg-[#13172b] p-8 lg:p-12 flex flex-col justify-between items-start" style="border-radius:2.5rem;clip-path:inset(0 round 2.5rem);-webkit-clip-path:inset(0 round 2.5rem);">
+            <!-- Hover Liquid Fill Background -->
+            <div class="absolute inset-0 bg-[#bd32b1] z-0 transition-all duration-[700ms] ease-[cubic-bezier(0.19,1,0.22,1)] translate-y-full rounded-t-[50%] group-hover:translate-y-0 group-hover:rounded-none"></div>
+            
+            <!-- Header Row -->
+            <div class="relative z-10 flex justify-between w-full items-start">
+              <span class="text-white/50 text-xs font-bold uppercase tracking-widest group-hover:text-white/90 transition-colors duration-500">Say Hello</span>
+              <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white group-hover:-rotate-45 group-hover:scale-110 transition-all duration-500">
+                <i class="ri-arrow-right-up-line text-white text-xl"></i>
+              </div>
+            </div>
+
+            <div class="relative z-10 w-full mt-auto">
+              
+              <!-- Default State: Creativity text (fades OUT on hover) -->
+              <div class="transition-all duration-500 ease-in-out group-hover:opacity-0 group-hover:-translate-y-6">
+                <h2 class="font-outfit font-bold text-3xl lg:text-4xl leading-[1.1] tracking-tight text-white mb-4">
+                  Where creativity<br>comes to life.<br>
+                  Where <span class="text-[#bd32b1] group-hover:text-white transition-colors duration-500">passions</span> find a stage.
+                </h2>
+                <p class="text-white/50 font-medium text-sm max-w-sm leading-relaxed">
+                  ISSACC — the collective spirit of IET Lucknow.
+                </p>
+              </div>
+
+              <!-- Hover State: "Let's build" text (fades IN on hover) -->
+              <div class="absolute bottom-0 left-0 w-full opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out pointer-events-none">
+                <div class="overflow-hidden leading-none">
+                  <h3 class="font-outfit font-black text-5xl lg:text-5xl xl:text-6xl text-white tracking-tighter translate-y-full group-hover:translate-y-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.19,1,0.22,1)]">Let's build</h3>
+                </div>
+                <div class="overflow-hidden leading-none mt-1">
+                  <h3 class="font-outfit font-black text-5xl lg:text-5xl xl:text-6xl text-white tracking-tighter translate-y-full group-hover:translate-y-0 transition-transform duration-[600ms] delay-75 ease-[cubic-bezier(0.19,1,0.22,1)]">together.</h3>
+                </div>
+              </div>
+
+            </div>
+          </a>
+        </div>
+
+        <!-- Column 2: Explore Links -->
+        <div class="hidden md:flex flex-col lg:col-span-3 h-full justify-start">
+          <div class="flex flex-col w-full border-t border-gray-200 mt-2 md:mt-0">
+            <!-- Explore Links -->
+            <a href="#" class="group relative py-3 border-b border-gray-200 flex items-center justify-between overflow-hidden">
+              <div class="absolute inset-0 bg-[#3f1b63] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+              <span class="relative z-10 font-bold text-[15px] uppercase tracking-widest text-[#13172b] group-hover:text-white transition-colors duration-500 group-hover:pl-4">About</span>
+              <i class="ri-arrow-right-line relative z-10 text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pr-4 transition-all duration-500"></i>
+            </a>
+            <a href="#" class="group relative py-3 border-b border-gray-200 flex items-center justify-between overflow-hidden">
+              <div class="absolute inset-0 bg-[#3f1b63] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+              <span class="relative z-10 font-bold text-[15px] uppercase tracking-widest text-[#13172b] group-hover:text-white transition-colors duration-500 group-hover:pl-4">Clubs</span>
+              <i class="ri-arrow-right-line relative z-10 text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pr-4 transition-all duration-500"></i>
+            </a>
+            <a href="#" class="group relative py-3 border-b border-gray-200 flex items-center justify-between overflow-hidden">
+              <div class="absolute inset-0 bg-[#3f1b63] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+              <span class="relative z-10 font-bold text-[15px] uppercase tracking-widest text-[#13172b] group-hover:text-white transition-colors duration-500 group-hover:pl-4">Events</span>
+              <i class="ri-arrow-right-line relative z-10 text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pr-4 transition-all duration-500"></i>
+            </a>
+            <a href="#" class="group relative py-3 border-b border-gray-200 flex items-center justify-between overflow-hidden">
+              <div class="absolute inset-0 bg-[#3f1b63] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+              <span class="relative z-10 font-bold text-[15px] uppercase tracking-widest text-[#13172b] group-hover:text-white transition-colors duration-500 group-hover:pl-4">Gallery</span>
+              <i class="ri-arrow-right-line relative z-10 text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pr-4 transition-all duration-500"></i>
+            </a>
+            <a href="#" class="group relative py-3 border-b border-gray-200 flex items-center justify-between overflow-hidden">
+              <div class="absolute inset-0 bg-[#3f1b63] -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+              <span class="relative z-10 font-bold text-[15px] uppercase tracking-widest text-[#13172b] group-hover:text-white transition-colors duration-500 group-hover:pl-4">Team</span>
+              <i class="ri-arrow-right-line relative z-10 text-white opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 group-hover:pr-4 transition-all duration-500"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 3: Social Links -->
+        <div class="lg:col-span-3 flex flex-col h-full justify-start">
+          <style>
+            .perspective-cube {
+              perspective: 1000px;
+            }
+            .cube-inner {
+              transform-style: preserve-3d;
+              transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .cube-front {
+              backface-visibility: hidden;
+              transform: translate3d(0, 0, 16px);
+            }
+            .cube-bottom {
+              backface-visibility: hidden;
+              transform: rotateX(-90deg) translate3d(0, 0, 16px);
+            }
+            .cube-link:hover .cube-inner {
+              transform: rotateX(90deg);
+            }
+          </style>
+          <div class="flex flex-col w-full border-t border-gray-200 mt-2">
+            <!-- Social Links -->
+            <a id="footer-instagram" href="#" target="_blank" class="cube-link group relative py-3 border-b border-gray-200 flex items-center justify-between perspective-cube">
+              <div class="absolute -inset-x-4 inset-y-0 overflow-hidden rounded-xl">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#f09433] via-[#e6683c] to-[#bc1888] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-0"></div>
+              </div>
+              <div class="relative z-10 w-full h-8 cube-inner">
+                <div class="absolute inset-0 flex items-center cube-front">
+                  <span class="font-bold text-[15px] uppercase tracking-widest text-[#13172b]">Instagram</span>
+                </div>
+                <div class="absolute inset-0 flex items-center cube-bottom">
+                  <span class="font-bold text-[15px] uppercase tracking-widest text-white">Follow Us</span>
+                </div>
+              </div>
+              <div class="relative z-10 text-gray-400 group-hover:text-white transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-12">
+                <i class="ri-instagram-line text-xl"></i>
+              </div>
+            </a>
+            
+            <a id="footer-facebook" href="#" target="_blank" class="cube-link group relative py-3 border-b border-gray-200 flex items-center justify-between perspective-cube">
+              <div class="absolute -inset-x-4 inset-y-0 overflow-hidden rounded-xl">
+                <div class="absolute inset-0 bg-[#1877F2] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-0"></div>
+              </div>
+              <div class="relative z-10 w-full h-8 cube-inner">
+                <div class="absolute inset-0 flex items-center cube-front">
+                  <span class="font-bold text-[15px] uppercase tracking-widest text-[#13172b]">Facebook</span>
+                </div>
+                <div class="absolute inset-0 flex items-center cube-bottom">
+                  <span class="font-bold text-[15px] uppercase tracking-widest text-white">Join Community</span>
+                </div>
+              </div>
+              <div class="relative z-10 text-gray-400 group-hover:text-white transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-12">
+                <i class="ri-facebook-fill text-xl"></i>
+              </div>
+            </a>
+
+            <a id="footer-linkedin" href="#" target="_blank" class="cube-link group relative py-3 border-b border-gray-200 flex items-center justify-between perspective-cube">
+              <div class="absolute -inset-x-4 inset-y-0 overflow-hidden rounded-xl">
+                <div class="absolute inset-0 bg-[#0077B5] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-0"></div>
+              </div>
+              <div class="relative z-10 w-full h-8 cube-inner">
+                <div class="absolute inset-0 flex items-center cube-front">
+                  <span class="font-bold text-[15px] uppercase tracking-widest text-[#13172b]">LinkedIn</span>
+                </div>
+                <div class="absolute inset-0 flex items-center cube-bottom">
+                  <span class="font-bold text-[15px] uppercase tracking-widest text-white">Connect</span>
+                </div>
+              </div>
+              <div class="relative z-10 text-gray-400 group-hover:text-white transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-12">
+                <i class="ri-linkedin-box-fill text-xl"></i>
+              </div>
+            </a>
+
+            <a id="footer-youtube" href="#" target="_blank" class="cube-link group relative py-3 border-b border-gray-200 flex items-center justify-between perspective-cube">
+              <div class="absolute -inset-x-4 inset-y-0 overflow-hidden rounded-xl">
+                <div class="absolute inset-0 bg-[#FF0000] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-0"></div>
+              </div>
+              <div class="relative z-10 w-full h-8 cube-inner">
+                <div class="absolute inset-0 flex items-center cube-front">
+                  <span class="font-bold text-[15px] uppercase tracking-widest text-[#13172b]">YouTube</span>
+                </div>
+                <div class="absolute inset-0 flex items-center cube-bottom">
+                  <span class="font-bold text-[15px] uppercase tracking-widest text-white">Subscribe</span>
+                </div>
+              </div>
+              <div class="relative z-10 text-gray-400 group-hover:text-white transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-12">
+                <i class="ri-youtube-fill text-xl"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- HUGE ISSACC TEXT flawlessly locking into the bottom -->
+      <div class="w-full flex justify-center pb-0 mt-auto flex-shrink-0" style="transform:translateZ(0);-webkit-transform:translateZ(0);">
+        <svg style="width:105%;height:auto;transform:translateY(15%);-webkit-transform:translateY(15%);display:block;" viewBox="0 0 1000 240" preserveAspectRatio="xMidYMax slice">
+          <text x="50%" y="240" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="900" font-size="285" letter-spacing="-5" fill="#3f1b63">ISSACC</text>
+        </svg>
+      </div>
+
     </div>
   </footer>
 
@@ -1004,7 +1699,118 @@
     }
   </style>
 
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
+    // Initialize Supabase Client
+    const SUPABASE_URL = 'https://minzszcmlblxwaegawgr.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1pbnpzemNtbGJseHdhZWdhd2dyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3MDcxNzIsImV4cCI6MjA5ODI4MzE3Mn0._9XI3bAyve0BCnz0RQdM9uPZX4zIVtli3FuOnFKEzDw';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // Global variables for dynamic About section images
+    let aboutImgBefore = '';
+    let aboutImgAfter = '';
+
+    // Dynamic Preloader Animation
+    function initPreloader() {
+      document.body.style.overflow = 'hidden';
+      
+      const preloaderLogos = [
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/Allure_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/Sae_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/auroras_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/excelsior_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/exclsr_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/fractal_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/insaniax_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/josh_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/kalakriti_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/mac_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/mirage_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/parmarth_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/robotics_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/sportsclub_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/swaranjali_logo.svg",
+        "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/clubs/logos/white%20bg%20logo/whiteboard_logo.svg"
+      ];
+      const loaderImg = document.getElementById('preloader-img');
+      let logoIndex = 0;
+      
+      const interval = setInterval(() => {
+        if (logoIndex < preloaderLogos.length) {
+          loaderImg.src = preloaderLogos[logoIndex];
+          logoIndex++;
+        } else {
+          clearInterval(interval);
+          loaderImg.src = "https://res.cloudinary.com/dwunkkjze/image/upload/issacc%20homepage/Hero/issacc.png";
+          
+          setTimeout(() => {
+            animateLogoToHeader();
+          }, 300);
+        }
+      }, 100);
+
+      function animateLogoToHeader() {
+        const target = document.getElementById('nav-logo-anchor');
+        const preloaderWrap = document.querySelector('.preloader-wrap');
+        const preloader = document.getElementById('preloader');
+        
+        if (!target || !preloaderWrap || !preloader) {
+          document.body.style.overflow = '';
+          if (preloader) preloader.style.display = 'none';
+          return;
+        }
+
+        const targetRect = target.getBoundingClientRect();
+        const wrapRect = preloaderWrap.getBoundingClientRect();
+        
+        const targetCenterX = targetRect.left + targetRect.width / 2;
+        const targetCenterY = targetRect.top + targetRect.height / 2;
+        const wrapCenterX = wrapRect.left + wrapRect.width / 2;
+        const wrapCenterY = wrapRect.top + wrapRect.height / 2;
+        
+        const deltaX = targetCenterX - wrapCenterX;
+        const deltaY = targetCenterY - wrapCenterY;
+        const targetScale = targetRect.height / wrapRect.height;
+        
+        const tl = gsap.timeline();
+        
+        tl.to(preloaderWrap, {
+          x: deltaX,
+          y: deltaY,
+          scale: targetScale,
+          duration: 1.2,
+          ease: "power4.inOut"
+        }, "fly");
+        
+        tl.to(preloader, {
+          backgroundColor: "rgba(253, 250, 252, 0)",
+          duration: 1.0,
+          ease: "power4.inOut"
+        }, "fly");
+        
+        tl.to(target, {
+          opacity: 1,
+          duration: 0.3,
+          delay: 0.95
+        }, "fly");
+        
+        tl.to(preloader, {
+          display: 'none',
+          onComplete: () => {
+            document.body.style.overflow = '';
+          }
+        });
+      }
+    }
+
+    if (document.readyState !== 'loading') {
+      initPreloader();
+    } else {
+      document.addEventListener('DOMContentLoaded', initPreloader);
+    }
+
     function toggleMenu() {
       const btn = document.getElementById('mobile-menu-btn');
       const menu = document.getElementById('mobile-menu');
@@ -1019,6 +1825,7 @@
       const sState = document.getElementById('state-story');
       const btnText = document.getElementById('btn-text');
       const btnIcon = document.getElementById('btn-icon');
+      const bgImg = document.getElementById('about-bg-img');
 
       if (vState.classList.contains('opacity-100')) {
         // Switch to Story
@@ -1032,6 +1839,7 @@
 
         btnText.innerText = 'Back to Vision';
         btnIcon.className = 'ri-arrow-left-up-line text-2xl text-[#5c1392]';
+        if (bgImg && aboutImgAfter) bgImg.src = aboutImgAfter;
       } else {
         // Switch to Vision
         vState.classList.replace('opacity-0', 'opacity-100');
@@ -1044,11 +1852,12 @@
 
         btnText.innerText = 'Discover Our Story';
         btnIcon.className = 'ri-arrow-right-up-line text-2xl text-[#5c1392]';
+        if (bgImg && aboutImgBefore) bgImg.src = aboutImgBefore;
       }
     }
 
     // Modal Logic
-    const eventsData = [
+    let eventsData = [
       {
         title: "ENCORE",
         subtitle: "Cultural Fest",
@@ -1113,6 +1922,7 @@
       const detailWrapper = document.getElementById('events-detail-wrapper');
       const panel = document.getElementById('events-sticky-panel');
       const follower = document.getElementById('cursor-follower');
+      const followerImg = document.getElementById('cursor-follower-img');
       const slidesContainer = document.getElementById('sticky-slides-container');
       const sliderControls = document.getElementById('slider-controls');
 
@@ -1124,93 +1934,65 @@
       const innerPanel = panel.children[0];
 
       if (window.innerWidth >= 1024) {
-        // 1. Disable CSS transitions temporarily
-        container.style.transition = 'none';
-        listWrapper.style.transition = 'none';
-        panel.style.transition = 'none';
+        // Hide the follower immediately — no morph needed
+        gsap.killTweensOf(follower);
+        gsap.set(follower, { opacity: 0, scale: 0.5 });
+        isFollowerVisible = false;
 
-        // 2. Apply final classes to measure layout instantly
-        listWrapper.classList.replace('lg:w-full', 'lg:w-5/12');
-        listWrapper.classList.add('hidden'); // Fully hide list to force layout
-        detailWrapper.classList.remove('hidden'); // Show detail to get accurate height
+        // Smooth scroll to the events section so the second view sits perfectly in the viewport
+        if (typeof lenis !== 'undefined' && lenis) {
+          lenis.scrollTo('#events', { offset: -20, duration: 1.2, ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        } else {
+          document.getElementById('events').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
 
-        panel.classList.remove('hidden', 'w-0', 'opacity-0');
-        panel.classList.add('lg:w-6/12', 'opacity-100');
+        // Pre-populate slides into the panel BEFORE animating
+        slidesContainer.innerHTML = data.images.map((img, i) => `
+          <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('${img}'); opacity: ${i === 0 ? 1 : 0}; transform: scale(${i === 0 ? 1 : 1.05}); z-index: ${i === 0 ? 10 : 1}; transition: z-index 0s;"></div>
+        `).join('');
 
-        container.classList.add('detail-view-active');
-        container.classList.replace('lg:justify-center', 'lg:justify-between');
+        // Set slider counter
+        document.getElementById('slider-counter').innerText = `01 / ${String(data.images.length).padStart(2, '0')}`;
+        const mobileCounter = document.getElementById('mobile-slider-counter');
+        if (mobileCounter) mobileCounter.innerText = `1 / ${data.images.length}`;
 
-        // Force reflow
-        void panel.offsetHeight;
+        // Step 1: Fade out the list (delayed slightly to let viewport align first)
+        gsap.to(listWrapper, {
+          opacity: 0, x: -40, duration: 0.35, delay: 0.3, ease: "power3.in",
+          onComplete: () => {
+            listWrapper.classList.add('hidden');
+            listWrapper.classList.replace('lg:w-full', 'lg:w-5/12');
 
-        // 3. Measure the final target bounding box for GSAP
-        const targetRect = innerPanel.getBoundingClientRect();
+            // Step 2: Show the detail + panel
+            container.classList.add('detail-view-active');
+            container.classList.replace('lg:justify-center', 'lg:justify-between');
 
-        // 4. Revert back to the initial state
-        listWrapper.classList.remove('hidden');
-        listWrapper.classList.replace('lg:w-5/12', 'lg:w-full');
-        detailWrapper.classList.add('hidden');
+            panel.classList.remove('hidden', 'w-0', 'opacity-0');
+            panel.classList.add('lg:w-6/12', 'opacity-100');
+            
+            detailWrapper.classList.remove('hidden');
 
-        panel.classList.add('hidden', 'w-0', 'opacity-0');
-        panel.classList.remove('lg:w-6/12', 'opacity-100');
+            // Step 3: Animate detail text in from left
+            gsap.fromTo(detailWrapper,
+              { opacity: 0, x: -40 },
+              { opacity: 1, x: 0, duration: 0.6, ease: "power3.out", delay: 0.1 }
+            );
 
-        container.classList.remove('detail-view-active');
-        container.classList.replace('lg:justify-between', 'lg:justify-center');
-
-        // Force reflow again
-        void panel.offsetHeight;
-
-        // 5. Re-enable CSS transitions
-        container.style.transition = '';
-        listWrapper.style.transition = '';
-        panel.style.transition = '';
-
-        // 6. Apply final classes AGAIN to trigger smooth CSS transition
-        container.classList.add('detail-view-active');
-        container.classList.replace('lg:justify-center', 'lg:justify-between');
-        panel.classList.remove('hidden');
-
-        requestAnimationFrame(() => {
-          panel.classList.replace('w-0', 'lg:w-6/12');
-          panel.classList.replace('opacity-0', 'opacity-100');
-          listWrapper.classList.replace('lg:w-full', 'lg:w-5/12');
-
-          gsap.to(listWrapper, {
-            opacity: 0, x: -30, duration: 0.2, onComplete: () => {
-              listWrapper.classList.add('hidden');
-              detailWrapper.classList.remove('hidden');
-              gsap.fromTo(detailWrapper, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" });
-            }
-          });
-
-          gsap.to(follower, {
-            x: targetRect.left,
-            y: targetRect.top,
-            width: targetRect.width,
-            height: targetRect.height,
-            borderRadius: '40px', // Matches new rounded-[40px]
-            xPercent: 0,
-            yPercent: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "expo.out",
-            onComplete: () => {
-              // Populate cinematic absolute zoom slides
-              slidesContainer.innerHTML = data.images.map((img, i) => `
-                <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: url('${img}'); opacity: ${i === 0 ? 1 : 0}; transform: scale(${i === 0 ? 1 : 1.05}); z-index: ${i === 0 ? 10 : 1}; transition: z-index 0s;"></div>
-              `).join('');
-              gsap.set(slidesContainer, { opacity: 1 });
-
-              // Set slider counter
-              document.getElementById('slider-counter').innerText = `01 / ${String(data.images.length).padStart(2, '0')}`;
-              const mobileCounter = document.getElementById('mobile-slider-counter');
-              if (mobileCounter) mobileCounter.innerText = `1 / ${data.images.length}`;
-
-              gsap.set(follower, { opacity: 0 });
-              sliderControls.classList.replace('opacity-0', 'opacity-100');
-              sliderControls.classList.replace('translate-y-4', 'translate-y-0');
-            }
-          });
+            // Step 4: Animate the panel image in from right with a scale effect
+            const innerPanel = panel.children[0];
+            gsap.fromTo(innerPanel,
+              { opacity: 0, x: 60, scale: 0.92 },
+              { opacity: 1, x: 0, scale: 1, duration: 0.7, ease: "expo.out", delay: 0.05,
+                onStart: () => {
+                  gsap.set(slidesContainer, { opacity: 1 });
+                },
+                onComplete: () => {
+                  sliderControls.classList.replace('opacity-0', 'opacity-100');
+                  sliderControls.classList.replace('translate-y-4', 'translate-y-0');
+                }
+              }
+            );
+          }
         });
       } else {
         // Mobile layout: Inline Expanding Flip-Card Accordion
@@ -1256,14 +2038,14 @@
               <div id="flip-card-${currentDetailIndex}" class="relative w-[92%] max-w-[400px] aspect-[4/5] sm:aspect-[3/4] transition-transform duration-700 cursor-pointer shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] rounded-[2.5rem]" style="transform-style: preserve-3d;" onclick="toggleFlip(${currentDetailIndex}, event)">
                 
                 <!-- Front: Carousel -->
-                <div class="absolute inset-0 rounded-[2.5rem] overflow-hidden bg-black" style="backface-visibility: hidden; -webkit-backface-visibility: hidden;">
+                <div class="absolute inset-0 rounded-[2.5rem] overflow-hidden bg-black" style="backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: translateZ(1px);">
                   <div id="mobile-carousel-${currentDetailIndex}" class="w-full h-full relative" ontouchstart="handleTouchStart(event)" ontouchend="handleTouchEnd(event, ${currentDetailIndex})">
                     ${data.images.map((img, i) => `
                       <img src="${img}" id="mobile-img-${currentDetailIndex}-${i}" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${i === 0 ? 'opacity-100' : 'opacity-0'}">
                     `).join('')}
                     
                     <!-- Circular Indicators -->
-                    <div id="mobile-indicators-${currentDetailIndex}" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-2 rounded-full bg-black/40 backdrop-blur-md z-10" onclick="event.stopPropagation()">
+                    <div id="mobile-indicators-${currentDetailIndex}" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-2 rounded-full bg-black/40 backdrop-blur-md z-10" style="backface-visibility: hidden; -webkit-backface-visibility: hidden;" onclick="event.stopPropagation()">
                       ${data.images.map((img, i) => `
                         <button onclick="setMobileImage(${i}, event, ${currentDetailIndex})" class="w-7 h-7 rounded-full overflow-hidden border-[1.5px] ${i === 0 ? 'border-white opacity-100' : 'border-transparent opacity-50'} transition-all duration-300">
                           <img src="${img}" class="w-full h-full object-cover">
@@ -1274,7 +2056,7 @@
                 </div>
                 
                 <!-- Back: Details (Balanced Layout with bottom button) -->
-                <div class="absolute inset-0 rounded-[2.5rem] overflow-hidden shadow-2xl bg-[#fcfcfc] flex flex-col items-center text-center p-6 sm:p-8" style="backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg);">
+                <div class="absolute inset-0 rounded-[2.5rem] overflow-hidden shadow-2xl bg-[#fcfcfc] flex flex-col items-center text-center p-6 sm:p-8" style="backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg) translateZ(1px);">
                   
                   <!-- Top Section (Heading) -->
                   <div class="flex flex-col items-center justify-start mt-2 w-full">
@@ -1553,8 +2335,40 @@
       }
       requestAnimationFrame(raf);
 
-      const eventItems = document.querySelectorAll('.event-item');
-      const follower = document.getElementById('cursor-follower');
+      // Hook up navbar and logo links to Lenis smooth scroll
+      document.querySelectorAll('a[href^="#"], #nav-logo-anchor').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          let targetElement = null;
+          if (this.id === 'nav-logo-anchor') {
+            targetElement = document.body;
+          } else {
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId !== '#') {
+              targetElement = document.querySelector(targetId);
+            }
+          }
+          
+          if (targetElement && typeof lenis !== 'undefined') {
+            // Close mobile menu if active
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('mobile-menu-btn');
+            if (menu && menu.classList.contains('active')) {
+              btn.classList.remove('open');
+              menu.classList.remove('active');
+              document.body.style.overflow = '';
+            }
+            
+            lenis.scrollTo(targetElement, {
+              offset: -40,
+              duration: 1.5,
+              ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+          }
+        });
+      });
+         const follower = document.getElementById('cursor-follower');
       const followerImg = document.getElementById('cursor-follower-img');
 
       if (typeof gsap !== 'undefined' && follower) {
@@ -1566,62 +2380,377 @@
             gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.6, ease: "power3.out" });
           }
         });
+      }
 
-        eventItems.forEach((item) => {
-          item.addEventListener("mouseenter", (e) => {
-            if (isOption1Active || window.innerWidth < 1024) return;
-            const index = parseInt(item.getAttribute('data-index'));
-            followerImg.style.backgroundImage = `url('${eventsData[index].images[0]}')`;
-            if (!isFollowerVisible) { gsap.set(follower, { x: e.clientX, y: e.clientY }); }
-            isFollowerVisible = true;
-            gsap.to(follower, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.5)" });
-          });
-          item.addEventListener("mouseleave", () => {
-            if (isOption1Active || window.innerWidth < 1024) return;
-            isFollowerVisible = false;
-            gsap.to(follower, { opacity: 0, scale: 0.5, duration: 0.3, ease: "power2.in" });
-          });
-        });
-
-        // Safety listeners to ensure the follower doesn't get stuck on screen
-        const eventsList = document.getElementById('events-list');
-        if (eventsList) {
-          eventsList.addEventListener("mouseleave", () => {
-            isFollowerVisible = false;
-            gsap.to(follower, { opacity: 0, scale: 0.5, duration: 0.3, ease: "power2.in" });
+      function initEventHoverEffects() {
+        const eventItems = document.querySelectorAll('.event-item');
+        if (typeof gsap !== 'undefined' && follower) {
+          eventItems.forEach((item) => {
+            item.addEventListener("mouseenter", (e) => {
+              if (isOption1Active || window.innerWidth < 1024) return;
+              const index = parseInt(item.getAttribute('data-index'));
+              followerImg.style.backgroundImage = `url('${eventsData[index].images[0]}')`;
+              if (!isFollowerVisible) { gsap.set(follower, { x: e.clientX, y: e.clientY }); }
+              isFollowerVisible = true;
+              gsap.to(follower, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.5)" });
+            });
+            item.addEventListener("mouseleave", () => {
+              if (isOption1Active || window.innerWidth < 1024) return;
+              isFollowerVisible = false;
+              gsap.to(follower, { opacity: 0, scale: 0.5, duration: 0.3, ease: "power2.in" });
+            });
           });
         }
-        document.addEventListener("mouseleave", () => {
+      }
+
+      // Fetch and Render Dynamic Content from Supabase
+      async function loadDynamicContent() {
+        // --- 0. Load About Section Settings ---
+        try {
+          const { data: aboutData, error: aboutErr } = await supabaseClient.from('about').select('*').eq('id', 1).single();
+          if (aboutErr) console.error('Error loading about section:', aboutErr);
+          else if (aboutData) {
+            const visionText = document.getElementById('about-vision-text');
+            const storyText = document.getElementById('about-story-text');
+            const bgImg = document.getElementById('about-bg-img');
+
+            if (visionText) visionText.innerText = aboutData.main_text;
+            if (storyText) storyText.innerText = aboutData.sub_text;
+            
+            aboutImgBefore = aboutData.bg_image_before;
+            aboutImgAfter = aboutData.bg_image_after;
+            
+            if (bgImg && aboutImgBefore) {
+              bgImg.src = aboutImgBefore;
+            }
+          }
+        } catch (e) {
+          console.error('About fetch failed:', e);
+        }
+
+        // --- 1. Load Team ---
+        try {
+          const { data: teamData, error: teamErr } = await supabaseClient.from('team').select('*').eq('is_visible', true).order('id', { ascending: true });
+          if (teamErr) console.error('Error loading team:', teamErr);
+          else if (teamData) {
+            const facultyContainer = document.getElementById('team-faculty-container');
+            const studentContainer = document.getElementById('team-student-container');
+            if (facultyContainer && studentContainer) {
+              facultyContainer.innerHTML = '';
+              studentContainer.innerHTML = '';
+              teamData.forEach(member => {
+                if (member.category === 'faculty') {
+                  facultyContainer.innerHTML += `
+                    <div class="group cursor-pointer">
+                      <div class="bloom-wrapper">
+                        <div class="bloom-shadow"></div>
+                        <img src="${member.image_url}" alt="${member.name}" class="bloom-img" />
+                      </div>
+                      <div class="mt-6 transition-transform duration-300 group-hover:-translate-y-1">
+                        <h4 class="font-outfit font-black text-xl text-[#13172b]">${member.name}</h4>
+                        <p class="text-[11px] font-bold text-[#bd32b1] uppercase tracking-[0.15em] mt-1.5">${member.role}</p>
+                      </div>
+                    </div>
+                  `;
+                } else {
+                  studentContainer.innerHTML += `
+                    <div class="group cursor-pointer">
+                      <div class="svg-draw-wrapper">
+                        <svg class="svg-draw-ring" viewBox="0 0 210 210">
+                          <circle class="svg-draw-circle" cx="105" cy="105" r="100"></circle>
+                        </svg>
+                        <img src="${member.image_url}" alt="${member.name}" class="svg-draw-img" />
+                      </div>
+                      <div class="mt-6 transition-transform duration-300 group-hover:-translate-y-1">
+                        <h4 class="font-outfit font-black text-lg text-[#13172b]">${member.name}</h4>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em] mt-1.5">${member.role}</p>
+                      </div>
+                    </div>
+                  `;
+                }
+              });
+            }
+          }
+        } catch (e) {
+          console.error('Team fetch failed:', e);
+        }
+
+        // --- 2. Load Events ---
+        try {
+          const { data: eventsDataDb, error: eventsErr } = await supabaseClient.from('events').select('*').eq('is_visible', true).order('sort_order', { ascending: true });
+          if (eventsErr) console.error('Error loading events:', eventsErr);
+          else if (eventsDataDb) {
+            eventsData = eventsDataDb.map(event => ({
+              title: event.title,
+              subtitle: event.subtitle,
+              images: [event.hover_image, ...(event.images || [])],
+              desc: event.description,
+              link: event.registration_link
+            }));
+
+            const eventsList = document.getElementById('events-list');
+            if (eventsList) {
+              eventsList.innerHTML = '';
+              eventsData.forEach((event, idx) => {
+                const isLast = idx === eventsData.length - 1;
+                const borderClass = isLast ? '' : 'event-item-line';
+                eventsList.innerHTML += `
+                  <div
+                    class="event-item ${borderClass} group relative w-full py-5 lg:py-8 flex flex-col transition-colors duration-500 hover:bg-[#5c1392]/[0.02] pl-0 lg:pl-8 lg:-ml-8 rounded-2xl cursor-pointer"
+                    data-index="${idx}" onclick="openEventModal(${idx})">
+                    <div class="flex items-center justify-between w-full">
+                      <div class="flex items-center gap-4 lg:gap-10">
+                        <span
+                          class="font-outfit font-medium text-gray-400 text-lg lg:text-xl w-6 lg:w-8 transition-colors duration-500 group-hover:text-[#5c1392]">${String(idx + 1).padStart(2, '0')}</span>
+                        <div
+                          class="lg:hidden w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-cover bg-center border border-black/5 shadow-md"
+                          style="background-image: url('${event.images[0]}');"></div>
+                        <h3
+                          class="font-outfit font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tighter text-[#13172b] lg:text-[#13172b]/60 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-btn1 group-hover:to-purple-btn2 transition-all duration-500 transform lg:group-hover:translate-x-2">
+                          ${event.title}</h3>
+                      </div>
+                      <div class="flex items-center gap-4 lg:gap-6">
+                        <span
+                          class="text-xs uppercase tracking-wider font-semibold text-gray-400 text-right hidden sm:inline">${event.subtitle}</span>
+                        <div
+                          class="w-10 h-10 rounded-full bg-white border border-[#5c1392]/10 flex items-center justify-center text-[#5c1392] lg:-rotate-45 group-hover:rotate-0 lg:group-hover:-rotate-45 lg:group-hover:bg-gradient-to-r group-hover:from-purple-btn1 group-hover:to-purple-btn2 lg:group-hover:text-white lg:group-hover:border-transparent transition-all duration-500 shadow-sm shrink-0">
+                          <i class="ri-arrow-right-line text-lg"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              });
+
+              initEventHoverEffects();
+            }
+          }
+        } catch (e) {
+          console.error('Events fetch failed:', e);
+        }
+
+        // --- 3. Load Clubs & Societies ---
+        try {
+          const { data: clubsData, error: clubsErr } = await supabaseClient.from('clubs').select('*').eq('is_visible', true).order('created_at', { ascending: true });
+          if (clubsErr) console.error('Error loading clubs:', clubsErr);
+          else if (clubsData) {
+            const clubsContainer = document.getElementById('clubs-grid-container');
+            if (clubsContainer) {
+              clubsContainer.innerHTML = '';
+              clubsData.forEach(club => {
+                if (club.website_url) {
+                  clubsContainer.innerHTML += `
+                    <a href="${club.website_url}" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
+                      <img src="${club.logo_url}" alt="${club.name}" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+                    </a>
+                  `;
+                } else {
+                  clubsContainer.innerHTML += `
+                    <div class="group flex items-center justify-center w-full max-w-[280px] aspect-square cursor-pointer">
+                      <img src="${club.logo_url}" alt="${club.name}" class="w-[68%] h-[68%] object-contain transition-transform duration-300 group-hover:scale-110" />
+                    </div>
+                  `;
+                }
+              });
+            }
+          }
+        } catch (e) {
+          console.error('Clubs fetch failed:', e);
+        }
+
+        // --- 4. Load Gallery (with strict marquee safety + repetition) ---
+        try {
+          const { data: galleryData, error: galleryErr } = await supabaseClient.from('gallery').select('*').eq('is_visible', true).order('created_at', { ascending: false });
+          if (galleryErr) console.error('Error loading gallery:', galleryErr);
+          else if (galleryData) {
+            const row1Container = document.getElementById('marquee-row-1');
+            const row2Container = document.getElementById('marquee-row-2');
+            
+            if (row1Container && row2Container) {
+              const row1Items = galleryData.filter((_, idx) => idx % 2 === 0);
+              const row2Items = galleryData.filter((_, idx) => idx % 2 !== 0);
+
+              // Auto repeat to guarantee marquee loops seamlessly
+              let row1Repeated = [...row1Items];
+              while (row1Repeated.length > 0 && row1Repeated.length < 8) {
+                row1Repeated = row1Repeated.concat(row1Items);
+              }
+              let row2Repeated = [...row2Items];
+              while (row2Repeated.length > 0 && row2Repeated.length < 8) {
+                row2Repeated = row2Repeated.concat(row2Items);
+              }
+
+              // Enforce strict aspect ratio rendering in CSS
+              let row1HTML = `<div class="marquee-track-left flex gap-0 shrink-0">`;
+              row1Repeated.forEach(item => {
+                row1HTML += `
+                  <div class="group relative h-[180px] md:h-[240px] w-[240px] md:w-[320px] shrink-0 overflow-hidden cursor-pointer" onclick="openLightbox('${item.image_url}', '${item.title}')">
+                    <img src="${item.image_url}" alt="${item.title}" class="h-full w-full object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+                  </div>
+                `;
+              });
+              row1HTML += `</div><div class="marquee-track-left flex gap-0 shrink-0">`;
+              row1Repeated.forEach(item => {
+                row1HTML += `
+                  <div class="group relative h-[180px] md:h-[240px] w-[240px] md:w-[320px] shrink-0 overflow-hidden cursor-pointer" onclick="openLightbox('${item.image_url}', '${item.title}')">
+                    <img src="${item.image_url}" alt="${item.title}" class="h-full w-full object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+                  </div>
+                `;
+              });
+              row1HTML += `</div>`;
+              row1Container.innerHTML = row1HTML;
+
+              let row2HTML = `<div class="marquee-track-right flex gap-0 shrink-0">`;
+              row2Repeated.forEach(item => {
+                row2HTML += `
+                  <div class="group relative h-[180px] md:h-[240px] w-[240px] md:w-[320px] shrink-0 overflow-hidden cursor-pointer" onclick="openLightbox('${item.image_url}', '${item.title}')">
+                    <img src="${item.image_url}" alt="${item.title}" class="h-full w-full object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+                  </div>
+                `;
+              });
+              row2HTML += `</div><div class="marquee-track-right flex gap-0 shrink-0">`;
+              row2Repeated.forEach(item => {
+                row2HTML += `
+                  <div class="group relative h-[180px] md:h-[240px] w-[240px] md:w-[320px] shrink-0 overflow-hidden cursor-pointer" onclick="openLightbox('${item.image_url}', '${item.title}')">
+                    <img src="${item.image_url}" alt="${item.title}" class="h-full w-full object-cover filter grayscale contrast-[1.1] opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none" />
+                  </div>
+                `;
+              });
+              row2HTML += `</div>`;
+              row2Container.innerHTML = row2HTML;
+            }
+          }
+        } catch (e) {
+          console.error('Gallery fetch failed:', e);
+        }
+
+        // --- 5. Load Achievements (Enforce 3-Image Grid) ---
+        try {
+          const { data: achData, error: achErr } = await supabaseClient.from('achievements').select('*').eq('is_visible', true).order('created_at', { ascending: false });
+          if (achErr) console.error('Error loading achievements:', achErr);
+          else if (achData) {
+            const achievementsContainer = document.getElementById('achievements-container');
+            if (achievementsContainer) {
+              achievementsContainer.innerHTML = '';
+              achData.forEach((ach, idx) => {
+                const topOffset = 20 + idx * 30;
+                achievementsContainer.innerHTML += `
+                  <div class="lg:sticky lg:top-[${topOffset}px] w-full bg-[#161616] border border-neutral-800/80 rounded-[32px] md:rounded-[40px] p-6 md:p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] transition-all duration-500 hover:border-neutral-700/80">
+                    <div class="flex justify-between items-start mb-6">
+                      <div class="flex items-center">
+                        <span class="font-outfit font-black text-5xl md:text-7xl text-neutral-400 tracking-tighter leading-none select-none">${String(idx + 1).padStart(2, '0')}</span>
+                        <div class="ml-4 md:ml-6 flex flex-col">
+                          <span class="text-[#bd32b1] font-bold text-xs md:text-sm tracking-widest uppercase">${ach.title}</span>
+                          <span class="text-white font-outfit font-bold text-lg md:text-2xl mt-1 tracking-tight">${ach.title}</span>
+                        </div>
+                      </div>
+                      ${ach.link_url ? `
+                        <a href="${ach.link_url}" target="_blank" class="border border-neutral-700 hover:border-brand-pink hover:text-brand-pink text-[10px] md:text-xs text-neutral-300 px-4 py-2 rounded-full tracking-wider font-semibold uppercase transition-colors">
+                          ${ach.link_text || 'Learn More'} <i class="ri-arrow-right-up-line ml-1"></i>
+                        </a>
+                      ` : ''}
+                    </div>
+                    <p class="text-neutral-400 font-medium text-sm md:text-base leading-relaxed max-w-4xl mb-8">
+                      ${ach.description}
+                    </p>
+                    
+                    <div class="flex flex-col md:flex-row gap-6">
+                      <!-- Left Column (2 Small Stacked Images) -->
+                      <div class="w-full md:w-5/12 flex flex-col gap-6">
+                        <div class="w-full h-[180px] md:h-[220px] overflow-hidden rounded-[24px] bg-neutral-900">
+                          <img src="${ach.image_url_1}" alt="Left Stack 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="w-full h-[180px] md:h-[220px] overflow-hidden rounded-[24px] bg-neutral-900">
+                          <img src="${ach.image_url_2}" alt="Left Stack 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                        </div>
+                      </div>
+                      <!-- Right Column (1 Large Image) -->
+                      <div class="w-full md:w-7/12">
+                        <div class="w-full h-[384px] md:h-[464px] overflow-hidden rounded-[24px] bg-neutral-900">
+                          <img src="${ach.image_url_3}" alt="Large Right Stack" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              });
+            }
+          }
+        } catch (e) {
+          console.error('Achievements fetch failed:', e);
+        }
+
+        // --- 6. Load Footer Links Settings ---
+        try {
+          const { data: settingsData, error: settingsErr } = await supabaseClient.from('settings').select('*').eq('id', 1).single();
+          if (settingsErr) console.error('Error loading footer settings:', settingsErr);
+          else if (settingsData) {
+            const footerEmail = document.getElementById('footer-email');
+            const footerInsta = document.getElementById('footer-instagram');
+            const footerFB = document.getElementById('footer-facebook');
+            const footerLinkedIn = document.getElementById('footer-linkedin');
+            const footerYT = document.getElementById('footer-youtube');
+
+            if (footerEmail && settingsData.contact_email) footerEmail.href = `mailto:${settingsData.contact_email}`;
+            if (footerInsta && settingsData.instagram_url) footerInsta.href = settingsData.instagram_url;
+            if (footerFB && settingsData.facebook_url) footerFB.href = settingsData.facebook_url;
+            if (footerLinkedIn && settingsData.linkedin_url) footerLinkedIn.href = settingsData.linkedin_url;
+            if (footerYT && settingsData.youtube_url) footerYT.href = settingsData.youtube_url;
+          }
+        } catch (e) {
+          console.error('Footer settings fetch failed:', e);
+        }
+      }
+
+      // Initial Fetch
+      loadDynamicContent();
+
+      // Enable Realtime Sync
+      supabaseClient
+        .channel('public-db-changes')
+        .on('postgres_changes', { event: '*', schema: 'public' }, () => {
+          loadDynamicContent();
+        })
+        .subscribe();
+
+      // Safety listeners to ensure the follower doesn't get stuck on screen
+      const eventsList = document.getElementById('events-list');
+      if (eventsList) {
+        eventsList.addEventListener("mouseleave", () => {
           isFollowerVisible = false;
           gsap.to(follower, { opacity: 0, scale: 0.5, duration: 0.3, ease: "power2.in" });
         });
+      }
+      document.addEventListener("mouseleave", () => {
+        isFollowerVisible = false;
+        gsap.to(follower, { opacity: 0, scale: 0.5, duration: 0.3, ease: "power2.in" });
+      });
 
-        // Hide follower on scroll
-        if (typeof lenis !== 'undefined') {
-          lenis.on('scroll', () => {
-            if (isFollowerVisible) {
-              isFollowerVisible = false;
-              gsap.to(follower, { opacity: 0, scale: 0.5, duration: 0.2, ease: "power2.in" });
-            }
-          });
-        }
-        window.addEventListener('scroll', () => {
+      // Hide follower on scroll
+      if (typeof lenis !== 'undefined') {
+        lenis.on('scroll', () => {
           if (isFollowerVisible) {
             isFollowerVisible = false;
             gsap.to(follower, { opacity: 0, scale: 0.5, duration: 0.2, ease: "power2.in" });
           }
         });
-
-        // Hide follower when entering other sections, headers, or footers
-        const otherSections = document.querySelectorAll('section:not(#events), footer, header, #hero, #about');
-        otherSections.forEach(sec => {
-          sec.addEventListener('mouseenter', () => {
-            isFollowerVisible = false;
-            gsap.to(follower, { opacity: 0, scale: 0.5, duration: 0.3, ease: "power2.in" });
-          });
-        });
       }
+      window.addEventListener('scroll', () => {
+        if (isFollowerVisible) {
+          isFollowerVisible = false;
+          gsap.to(follower, { opacity: 0, scale: 0.5, duration: 0.2, ease: "power2.in" });
+        }
+      });
 
+      // Hide follower when entering other sections, headers, or footers
+      const otherSections = document.querySelectorAll('section:not(#events), footer, header, #hero, #about');
+      otherSections.forEach(sec => {
+        sec.addEventListener('mouseenter', () => {
+          isFollowerVisible = false;
+          gsap.to(follower, { opacity: 0, scale: 0.5, duration: 0.3, ease: "power2.in" });
+        });
+      });
+      
       // Premium Touch Swipe Gestures for Mobile Image Carousel
       const stickyPanel = document.getElementById('events-sticky-panel');
       if (stickyPanel) {
@@ -1641,6 +2770,42 @@
             prevImage(new Event('click')); // Swipe Right -> Prev
           }
         }, { passive: true });
+      }
+    });
+
+    // Premium Gallery Lightbox Controller
+    function openLightbox(src, title) {
+      const lb = document.getElementById('gallery-lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const lbTitle = document.getElementById('lightbox-title');
+      if (lb && lbImg && lbTitle) {
+        lbImg.src = src;
+        lbTitle.innerText = title;
+        lb.classList.remove('hidden');
+        lb.classList.add('flex');
+        
+        // GSAP Animations
+        gsap.killTweensOf([lb, lbImg]);
+        gsap.fromTo(lb, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+        gsap.fromTo(lbImg, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "power3.out" });
+      }
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById('gallery-lightbox');
+      if (lb) {
+        gsap.killTweensOf(lb);
+        gsap.to(lb, { opacity: 0, duration: 0.3, onComplete: () => {
+          lb.classList.add('hidden');
+          lb.classList.remove('flex');
+        }});
+      }
+    }
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
       }
     });
   </script>
