@@ -241,27 +241,77 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Contact Email</label>
-                  <input type="email" id="set-email" class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white">
+                  <input type="email" id="set-email" placeholder="issacc@ietlucknow.ac.in" class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white">
                 </div>
+
+                <!-- Instagram -->
                 <div>
-                  <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Instagram URL</label>
-                  <input type="url" id="set-instagram" class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white">
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+                      <i class="ri-instagram-line text-pink-400"></i> Instagram
+                    </label>
+                    <label class="relative inline-flex items-center cursor-pointer" title="Enable/Disable Instagram in footer">
+                      <input type="checkbox" id="toggle-instagram" class="sr-only peer" checked onchange="toggleSocialInput('instagram')">
+                      <div class="w-8 h-4 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-brand-pink"></div>
+                    </label>
+                  </div>
+                  <input type="url" id="set-instagram" placeholder="https://www.instagram.com/..." class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white transition-opacity">
                 </div>
+
+                <!-- Facebook -->
                 <div>
-                  <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Facebook URL</label>
-                  <input type="url" id="set-facebook" class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white">
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+                      <i class="ri-facebook-fill text-blue-400"></i> Facebook
+                    </label>
+                    <label class="relative inline-flex items-center cursor-pointer" title="Enable/Disable Facebook in footer">
+                      <input type="checkbox" id="toggle-facebook" class="sr-only peer" checked onchange="toggleSocialInput('facebook')">
+                      <div class="w-8 h-4 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-brand-pink"></div>
+                    </label>
+                  </div>
+                  <input type="url" id="set-facebook" placeholder="https://www.facebook.com/..." class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white transition-opacity">
                 </div>
+
+                <!-- LinkedIn -->
                 <div>
-                  <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">LinkedIn URL</label>
-                  <input type="url" id="set-linkedin" class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white">
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+                      <i class="ri-linkedin-box-fill text-blue-500"></i> LinkedIn
+                    </label>
+                    <label class="relative inline-flex items-center cursor-pointer" title="Enable/Disable LinkedIn in footer">
+                      <input type="checkbox" id="toggle-linkedin" class="sr-only peer" checked onchange="toggleSocialInput('linkedin')">
+                      <div class="w-8 h-4 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-brand-pink"></div>
+                    </label>
+                  </div>
+                  <input type="url" id="set-linkedin" placeholder="https://www.linkedin.com/..." class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white transition-opacity">
                 </div>
+
+                <!-- YouTube -->
                 <div>
-                  <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">YouTube URL</label>
-                  <input type="url" id="set-youtube" class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white">
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+                      <i class="ri-youtube-fill text-red-500"></i> YouTube
+                    </label>
+                    <label class="relative inline-flex items-center cursor-pointer" title="Enable/Disable YouTube in footer">
+                      <input type="checkbox" id="toggle-youtube" class="sr-only peer" checked onchange="toggleSocialInput('youtube')">
+                      <div class="w-8 h-4 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-brand-pink"></div>
+                    </label>
+                  </div>
+                  <input type="url" id="set-youtube" placeholder="https://www.youtube.com/..." class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white transition-opacity">
                 </div>
+
+                <!-- X (Twitter) -->
                 <div>
-                  <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">X (Twitter) URL</label>
-                  <input type="url" id="set-twitter" class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white">
+                  <div class="flex items-center justify-between mb-2">
+                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+                      <i class="ri-twitter-x-fill text-gray-300"></i> X (Twitter)
+                    </label>
+                    <label class="relative inline-flex items-center cursor-pointer" title="Enable/Disable X (Twitter) in footer">
+                      <input type="checkbox" id="toggle-twitter" class="sr-only peer" checked onchange="toggleSocialInput('twitter')">
+                      <div class="w-8 h-4 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-brand-pink"></div>
+                    </label>
+                  </div>
+                  <input type="url" id="set-twitter" placeholder="https://x.com/..." class="w-full px-4 py-3 bg-brand-dark/80 border border-white/10 rounded-xl focus:outline-none focus:border-brand-pink text-white transition-opacity">
                 </div>
               </div>
             </div>
@@ -600,6 +650,20 @@
       }
     }
 
+    function toggleSocialInput(name) {
+      const toggle = document.getElementById(`toggle-${name}`);
+      const input = document.getElementById(`set-${name}`);
+      if (toggle && input) {
+        if (toggle.checked) {
+          input.disabled = false;
+          input.classList.remove('opacity-40');
+        } else {
+          input.disabled = true;
+          input.classList.add('opacity-40');
+        }
+      }
+    }
+
     // Load Settings Data
     async function loadSettingsData() {
       const loader = document.getElementById('data-loader');
@@ -633,11 +697,23 @@
         if (settingsErr) console.error(settingsErr);
         else if (settingsData) {
           document.getElementById('set-email').value = settingsData.contact_email || '';
-          document.getElementById('set-instagram').value = settingsData.instagram_url || '';
-          document.getElementById('set-facebook').value = settingsData.facebook_url || '';
-          document.getElementById('set-linkedin').value = settingsData.linkedin_url || '';
-          document.getElementById('set-youtube').value = settingsData.youtube_url || '';
-          document.getElementById('set-twitter').value = settingsData.twitter_url || '';
+
+          const setupSocialField = (name, urlVal, defaultUrl) => {
+            const toggle = document.getElementById(`toggle-${name}`);
+            const input = document.getElementById(`set-${name}`);
+            if (toggle && input) {
+              const hasUrl = urlVal !== null && urlVal !== undefined && urlVal !== '';
+              toggle.checked = hasUrl;
+              input.value = hasUrl ? urlVal : defaultUrl;
+              toggleSocialInput(name);
+            }
+          };
+
+          setupSocialField('instagram', settingsData.instagram_url, 'https://www.instagram.com');
+          setupSocialField('facebook', settingsData.facebook_url, 'https://www.facebook.com');
+          setupSocialField('linkedin', settingsData.linkedin_url, 'https://www.linkedin.com');
+          setupSocialField('youtube', settingsData.youtube_url, 'https://www.youtube.com');
+          setupSocialField('twitter', settingsData.twitter_url, 'https://x.com');
         }
 
         loader.classList.add('hidden');
@@ -1354,14 +1430,24 @@
         aboutImgBeforeBase64 = null;
         aboutImgAfterBase64 = null;
 
-        // 2. Save Footer Settings Row
+        // Helper to get URL if toggle is checked, or null if disabled
+        const getSocialUrl = (name) => {
+          const toggle = document.getElementById(`toggle-${name}`);
+          const input = document.getElementById(`set-${name}`);
+          if (toggle && toggle.checked && input) {
+            return input.value.trim() || null;
+          }
+          return null;
+        };
+
+        // 2. Save Footer Settings Row (only valid columns in database schema)
         let settingsPayload = {
-          contact_email: document.getElementById('set-email').value,
-          instagram_url: document.getElementById('set-instagram').value || null,
-          facebook_url: document.getElementById('set-facebook').value || null,
-          linkedin_url: document.getElementById('set-linkedin').value || null,
-          youtube_url: document.getElementById('set-youtube').value || null,
-          twitter_url: document.getElementById('set-twitter').value || null
+          contact_email: document.getElementById('set-email').value || null,
+          instagram_url: getSocialUrl('instagram'),
+          facebook_url: getSocialUrl('facebook'),
+          linkedin_url: getSocialUrl('linkedin'),
+          youtube_url: getSocialUrl('youtube'),
+          twitter_url: getSocialUrl('twitter')
         };
 
         const settingsRes = await supabaseClient.from('settings').update(settingsPayload).eq('id', 1);
